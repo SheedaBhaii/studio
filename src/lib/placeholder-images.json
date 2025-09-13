@@ -3,55 +3,55 @@
     {
       "id": "hero-image",
       "description": "A sleek, modern gaming and workstation PC setup with ambient lighting.",
-      "imageUrl": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=1920&h=1080&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
       "imageHint": "gaming setup"
     },
     {
       "id": "gpu",
       "description": "Close-up of a powerful GPU inside a PC case.",
-      "imageUrl": "https://images.unsplash.com/photo-1627814022373-b3b3e4f3c750?q=80&w=600&h=400&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/gpu/600/400",
       "imageHint": "graphics card"
     },
     {
       "id": "monitor",
       "description": "A modern computer monitor displaying a vibrant image.",
-      "imageUrl": "https://images.unsplash.com/photo-1598134493399-2a14324f4ead?q=80&w=600&h=400&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/monitor/600/400",
       "imageHint": "computer monitor"
     },
     {
       "id": "peripheral-1",
       "description": "A gaming mouse with RGB lighting.",
-      "imageUrl": "https://images.unsplash.com/photo-1615663249856-559100146a48?q=80&w=600&h=400&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/mouse/600/400",
       "imageHint": "gaming mouse"
     },
     {
       "id": "peripheral-2",
       "description": "A pair of stylish gaming headphones.",
-      "imageUrl": "https://images.unsplash.com/photo-1585298723682-71155614e1b7?q=80&w=600&h=400&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/headset/600/400",
       "imageHint": "gaming headset"
     },
     {
       "id": "testimonial-1",
       "description": "A female architecture student working on a laptop with a complex 3D model.",
-      "imageUrl": "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=100&h=100&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/student/100/100",
       "imageHint": "woman architect"
     },
     {
       "id": "testimonial-2",
       "description": "A male professional architect at his desk with blueprints.",
-      "imageUrl": "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?q=80&w=100&h=100&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/architect/100/100",
       "imageHint": "man architect"
     },
     {
       "id": "testimonial-3",
       "description": "A young person intensely focused on a gaming session.",
-      "imageUrl": "https://images.unsplash.com/photo-1589241064952-474f7556d19c?q=80&w=100&h=100&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/gamer/100/100",
       "imageHint": "person gaming"
     },
     {
       "id": "contact",
       "description": "An office environment with people working on computers.",
-      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600&h=800&fit=crop",
+      "imageUrl": "https://picsum.photos/seed/office/600/800",
       "imageHint": "office team"
     }
   ]

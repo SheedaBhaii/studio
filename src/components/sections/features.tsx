@@ -1,3 +1,4 @@
+'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { CircuitBoard, Cpu, HardDrive, MemoryStick, Monitor, Users, Layers, Gamepad2, Paintbrush } from 'lucide-react';

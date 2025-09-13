@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect, useRef } from 'react';
 import { useFormStatus } from 'react-dom';
 import { submitContactForm } from '@/app/actions';
 
@@ -8,11 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, Mail, MapPin, Phone, Send, Twitter, Instagram, Facebook, CheckCircle } from 'lucide-react';
-import Link from 'next/link';
-import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { CheckCircle, Facebook, Instagram, Loader2, Mail, MapPin, Phone, Send, Twitter } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const contactInitialState = {
   message: '',
