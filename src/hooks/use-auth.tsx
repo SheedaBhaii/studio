@@ -18,23 +18,32 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  updateEmail,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useToast } from './use-toast';
+
+type AuthDialogMode = 'login' | 'signup' | 'forgot-password' | 'change-email';
 
 type AuthState = {
   user: User | null;
   loading: boolean;
   isAuthDialogOpen: boolean;
-  authDialogMode: 'login' | 'signup';
+  authDialogMode: AuthDialogMode;
   authError: string | null;
+  authMessage: string | null;
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
   signInWithMicrosoft: () => Promise<void>;
   signUpWithEmail: (email: string, password: string, name: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
-  openAuthDialog: (mode: 'login' | 'signup') => void;
+  sendVerificationEmail: () => Promise<void>;
+  sendPasswordReset: (email: string) => Promise<void>;
+  changeEmail: (newEmail: string) => Promise<void>;
+  openAuthDialog: (mode: AuthDialogMode) => void;
   closeAuthDialog: () => void;
 };
 
@@ -44,8 +53,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
-  const [authDialogMode, setAuthDialogMode] = useState<'login' | 'signup'>('login');
+  const [authDialogMode, setAuthDialogMode] = useState<AuthDialogMode>('login');
   const [authError, setAuthError] = useState<string | null>(null);
+  const [authMessage, setAuthMessage] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -56,36 +66,56 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => unsubscribe();
   }, []);
   
-  const clearError = () => setAuthError(null);
+  const clearAlerts = () => {
+    setAuthError(null);
+    setAuthMessage(null);
+  };
 
-  const handleSignInSuccess = (user: User, provider: string) => {
+  const handleAuthSuccess = (user: User, message: string) => {
     setUser(user);
     closeAuthDialog();
     toast({
-      title: 'Authentication Successful',
-      description: `Welcome, you're now logged in with ${provider}.`,
+      title: 'Success',
+      description: message,
     });
   };
 
-  const handleSignInError = (error: any, provider: string) => {
-    console.error(`Error with ${provider} sign-in:`, error);
-    let message = `Could not sign in with ${provider}. Please try again.`;
-    if (error.code === 'auth/account-exists-with-different-credential') {
-      message = 'An account already exists with the same email address but different sign-in credentials.';
-    } else if (error.code === 'auth/invalid-credential') {
-      message = 'Invalid credentials. Please check your email and password.';
+  const handleAuthError = (error: any, context: string) => {
+    console.error(`Error with ${context}:`, error);
+    let message = `An error occurred during ${context}. Please try again.`;
+    if (error.code) {
+      switch (error.code) {
+        case 'auth/account-exists-with-different-credential':
+          message = 'An account already exists with this email but with a different sign-in method.';
+          break;
+        case 'auth/invalid-credential':
+          message = 'Invalid credentials. Please check your details and try again.';
+          break;
+        case 'auth/email-already-in-use':
+          message = 'This email is already registered. Please log in.';
+          break;
+        case 'auth/user-not-found':
+          message = 'No account found with this email address.';
+          break;
+         case 'auth/requires-recent-login':
+          message = 'This action is sensitive and requires recent authentication. Please log in again before retrying.';
+          break;
+        default:
+          message = error.message;
+          break;
+      }
     }
     setAuthError(message);
   };
   
   const signInWithProvider = async (provider: GoogleAuthProvider | FacebookAuthProvider | OAuthProvider, providerName: string) => {
     setLoading(true);
-    clearError();
+    clearAlerts();
     try {
       const result = await signInWithPopup(auth, provider);
-      handleSignInSuccess(result.user, providerName);
+      handleAuthSuccess(result.user, `Welcome, you're now logged in with ${providerName}.`);
     } catch (error) {
-      handleSignInError(error, providerName);
+      handleAuthError(error, `${providerName} sign-in`);
     } finally {
       setLoading(false);
     }
@@ -106,18 +136,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUpWithEmail = async (email: string, password: string, name: string) => {
     setLoading(true);
-    clearError();
+    clearAlerts();
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(userCredential.user, { displayName: name });
+      await sendEmailVerification(userCredential.user);
       const updatedUser = { ...userCredential.user, displayName: name };
-      handleSignInSuccess(updatedUser, 'Email');
+      handleAuthSuccess(updatedUser, 'Your account has been created. Please check your email to verify your address.');
     } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
-        setAuthError('This email is already in use. Please log in or use a different email.');
-      } else {
-        handleSignInError(error, 'Email');
-      }
+      handleAuthError(error, 'email sign-up');
     } finally {
       setLoading(false);
     }
@@ -125,16 +152,61 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   
   const signInWithEmail = async (email: string, password: string) => {
     setLoading(true);
-    clearError();
+    clearAlerts();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      handleSignInSuccess(userCredential.user, 'Email');
+      handleAuthSuccess(userCredential.user, 'Welcome back!');
     } catch (error) {
-      handleSignInError(error, 'Email');
+      handleAuthError(error, 'email sign-in');
     } finally {
       setLoading(false);
     }
   };
+  
+  const sendVerificationEmail = async () => {
+    if (!auth.currentUser) return;
+    setLoading(true);
+    try {
+      await sendEmailVerification(auth.currentUser);
+      toast({
+        title: 'Email Sent',
+        description: 'A new verification email has been sent to your address.',
+      });
+    } catch (error) {
+      handleAuthError(error, 'sending verification email');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const sendPasswordReset = async (email: string) => {
+    setLoading(true);
+    clearAlerts();
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setAuthMessage('A password reset link has been sent to your email address.');
+    } catch (error) {
+      handleAuthError(error, 'password reset');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const changeEmail = async (newEmail: string) => {
+    if (!auth.currentUser) return;
+    setLoading(true);
+    clearAlerts();
+    try {
+      await updateEmail(auth.currentUser, newEmail);
+      await sendEmailVerification(auth.currentUser);
+      handleAuthSuccess(auth.currentUser, 'Your email has been updated. Please check your new email to verify it.');
+    } catch (error) {
+      handleAuthError(error, 'email change');
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const signOut = async () => {
     try {
@@ -154,15 +226,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const openAuthDialog = (mode: 'login' | 'signup') => {
+  const openAuthDialog = (mode: AuthDialogMode) => {
     setAuthDialogMode(mode);
     setIsAuthDialogOpen(true);
-    clearError();
+    clearAlerts();
   };
 
   const closeAuthDialog = () => {
     setIsAuthDialogOpen(false);
-    clearError();
+    clearAlerts();
   };
 
   const value = {
@@ -171,12 +243,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isAuthDialogOpen,
     authDialogMode,
     authError,
+    authMessage,
     signInWithGoogle,
     signInWithFacebook,
     signInWithMicrosoft,
     signUpWithEmail,
     signInWithEmail,
     signOut,
+    sendVerificationEmail,
+    sendPasswordReset,
+    changeEmail,
     openAuthDialog,
     closeAuthDialog,
   };

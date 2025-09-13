@@ -4,6 +4,7 @@ import {
   recommendPCConfiguration,
   type RecommendPCConfigurationOutput,
 } from '@/ai/flows/pc-decision-gen-ai';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 // --- PC Recommendation Action ---
@@ -74,6 +75,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   console.log('Contact form submitted:', validatedFields.data);
   
   await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
-
+  
+  revalidatePath('/');
   return { message: 'Thank you for your message! We will get back to you shortly.' };
 }

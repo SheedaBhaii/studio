@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, PcCase, UserCircle } from 'lucide-react';
+import { Mail, Menu, PcCase } from 'lucide-react';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
 import {
@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import AuthDialog from '@/components/auth/auth-dialog';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 
 
 const navLinks = [
@@ -24,7 +25,7 @@ const navLinks = [
 ];
 
 function UserNav() {
-  const { user, signOut, openAuthDialog } = useAuth();
+  const { user, signOut, openAuthDialog, sendVerificationEmail, loading } = useAuth();
 
   if (user) {
     return (
@@ -47,6 +48,20 @@ function UserNav() {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
+          {!user.emailVerified && (
+            <>
+              <DropdownMenuItem
+                onClick={sendVerificationEmail}
+                disabled={loading}
+              >
+                Verify Email
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+            </>
+          )}
+          <DropdownMenuItem onClick={() => openAuthDialog('change-email')}>
+            Change Email
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={signOut}>
             Log out
           </DropdownMenuItem>
@@ -69,9 +84,10 @@ function UserNav() {
 
 
 export default function Header() {
-  const { openAuthDialog } = useAuth();
+  const { user, openAuthDialog, authMessage } = useAuth();
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="mr-4 flex items-center">
@@ -128,5 +144,19 @@ export default function Header() {
         </div>
       </div>
     </header>
+    {user && !user.emailVerified && (
+        <div className="bg-secondary border-b">
+          <div className="container py-2">
+             <Alert>
+                <Mail className="h-4 w-4" />
+                <AlertTitle>Please verify your email</AlertTitle>
+                <AlertDescription>
+                  A verification link has been sent to your email address. Click the link to complete your registration.
+                </AlertDescription>
+            </Alert>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
