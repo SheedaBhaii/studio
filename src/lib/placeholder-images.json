@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A sleek, modern gaming and workstation PC setup with ambient lighting.",
+      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageHint": "gaming setup"
+    },
+    {
+      "id": "gpu",
+      "description": "Close-up of a powerful GPU inside a PC case.",
+      "imageUrl": "https://picsum.photos/seed/gpu/600/400",
+      "imageHint": "graphics card"
+    },
+    {
+      "id": "monitor",
+      "description": "The Ease G24i18 monitor displaying a vibrant image.",
+      "imageUrl": "https://picsum.photos/seed/monitor/600/400",
+      "imageHint": "computer monitor"
+    },
+    {
+      "id": "peripheral-1",
+      "description": "The Razer Mamba Elite mouse.",
+      "imageUrl": "https://picsum.photos/seed/mouse/600/400",
+      "imageHint": "gaming mouse"
+    },
+    {
+      "id": "peripheral-2",
+      "description": "The Razer Kraken TE headset.",
+      "imageUrl": "https://picsum.photos/seed/headset/600/400",
+      "imageHint": "gaming headset"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "A female architecture student working on a laptop with a complex 3D model.",
+      "imageUrl": "https://picsum.photos/seed/archstudent/100/100",
+      "imageHint": "woman architect"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "A male professional architect at his desk with blueprints.",
+      "imageUrl": "https://picsum.photos/seed/proarch/100/100",
+      "imageHint": "man architect"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "A young person intensely focused on a gaming session.",
+      "imageUrl": "https://picsum.photos/seed/gamer/100/100",
+      "imageHint": "person gaming"
+    }
+  ]
 }
