@@ -14,7 +14,6 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
-  TwitterAuthProvider, 
   OAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -32,7 +31,6 @@ type AuthState = {
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
   signInWithMicrosoft: () => Promise<void>;
-  signInWithX: () => Promise<void>;
   signUpWithEmail: (email: string, password: string, name: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
@@ -80,7 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setAuthError(message);
   };
   
-  const signInWithProvider = async (provider: GoogleAuthProvider | FacebookAuthProvider | TwitterAuthProvider | OAuthProvider, providerName: string) => {
+  const signInWithProvider = async (provider: GoogleAuthProvider | FacebookAuthProvider | OAuthProvider, providerName: string) => {
     setLoading(true);
     clearError();
     try {
@@ -104,10 +102,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithMicrosoft = async () => {
     const provider = new OAuthProvider('microsoft.com');
     await signInWithProvider(provider, 'Microsoft');
-  };
-
-  const signInWithX = async () => {
-    await signInWithProvider(new TwitterAuthProvider(), 'X (Twitter)');
   };
 
   const signUpWithEmail = async (email: string, password: string, name: string) => {
@@ -180,7 +174,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     signInWithGoogle,
     signInWithFacebook,
     signInWithMicrosoft,
-    signInWithX,
     signUpWithEmail,
     signInWithEmail,
     signOut,

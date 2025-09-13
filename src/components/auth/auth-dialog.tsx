@@ -9,7 +9,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Chrome, Facebook, Twitter, Mail, Loader2 } from 'lucide-react'; 
+import { Chrome, Facebook, Mail, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
@@ -34,7 +34,6 @@ export default function AuthDialog() {
     signInWithGoogle,
     signInWithFacebook,
     signInWithMicrosoft,
-    signInWithX,
     signInWithEmail,
     signUpWithEmail,
     openAuthDialog,
@@ -88,9 +87,6 @@ export default function AuthDialog() {
           </Button>
            <Button variant="outline" onClick={signInWithMicrosoft}>
             <MicrosoftIcon /> Continue with Microsoft
-          </Button>
-          <Button variant="outline" onClick={signInWithX}>
-            <Twitter className="mr-2 h-4 w-4" /> Continue with X
           </Button>
         </div>
 
