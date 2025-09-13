@@ -15,7 +15,10 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   TwitterAuthProvider, 
-  OAuthProvider
+  OAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useToast } from './use-toast';
@@ -25,10 +28,13 @@ type AuthState = {
   loading: boolean;
   isAuthDialogOpen: boolean;
   authDialogMode: 'login' | 'signup';
+  authError: string | null;
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
   signInWithDiscord: () => Promise<void>;
   signInWithX: () => Promise<void>;
+  signUpWithEmail: (email: string, password: string, name: string) => Promise<void>;
+  signInWithEmail: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   openAuthDialog: (mode: 'login' | 'signup') => void;
   closeAuthDialog: () => void;
@@ -41,6 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
   const [authDialogMode, setAuthDialogMode] = useState<'login' | 'signup'>('login');
+  const [authError, setAuthError] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -50,6 +57,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     return () => unsubscribe();
   }, []);
+  
+  const clearError = () => setAuthError(null);
 
   const handleSignInSuccess = (user: User, provider: string) => {
     setUser(user);
@@ -62,55 +71,76 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const handleSignInError = (error: any, provider: string) => {
     console.error(`Error with ${provider} sign-in:`, error);
-    toast({
-      variant: 'destructive',
-      title: 'Authentication Failed',
-      description: `Could not sign in with ${provider}. Please try again.`,
-    });
+    let message = `Could not sign in with ${provider}. Please try again.`;
+    if (error.code === 'auth/account-exists-with-different-credential') {
+      message = 'An account already exists with the same email address but different sign-in credentials.';
+    } else if (error.code === 'auth/invalid-credential') {
+      message = 'Invalid credentials. Please check your email and password.';
+    }
+    setAuthError(message);
   };
+  
+  const signInWithProvider = async (provider: GoogleAuthProvider | FacebookAuthProvider | TwitterAuthProvider | OAuthProvider, providerName: string) => {
+    setLoading(true);
+    clearError();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      handleSignInSuccess(result.user, providerName);
+    } catch (error) {
+      handleSignInError(error, providerName);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const signInWithGoogle = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      handleSignInSuccess(result.user, 'Google');
-    } catch (error) {
-      handleSignInError(error, 'Google');
-    }
+    await signInWithProvider(new GoogleAuthProvider(), 'Google');
   };
   
   const signInWithFacebook = async () => {
-    try {
-      const provider = new FacebookAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      handleSignInSuccess(result.user, 'Facebook');
-    } catch (error) {
-      handleSignInError(error, 'Facebook');
-    }
+    await signInWithProvider(new FacebookAuthProvider(), 'Facebook');
   };
   
   const signInWithDiscord = async () => {
-    try {
-      // Note: Firebase doesn't have a built-in Discord provider.
-      // This requires a custom OAuth setup in the Firebase console.
-      // The provider ID 'discord.com' must match what's configured there.
-      const provider = new OAuthProvider('discord.com');
-      provider.addScope('identify');
-      provider.addScope('email');
-      const result = await signInWithPopup(auth, provider);
-      handleSignInSuccess(result.user, 'Discord');
-    } catch (error) {
-      handleSignInError(error, 'Discord');
-    }
+    const provider = new OAuthProvider('discord.com');
+    provider.addScope('identify');
+    provider.addScope('email');
+    await signInWithProvider(provider, 'Discord');
   };
 
   const signInWithX = async () => {
+    await signInWithProvider(new TwitterAuthProvider(), 'X (Twitter)');
+  };
+
+  const signUpWithEmail = async (email: string, password: string, name: string) => {
+    setLoading(true);
+    clearError();
     try {
-      const provider = new TwitterAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      handleSignInSuccess(result.user, 'X (Twitter)');
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user, { displayName: name });
+      const updatedUser = { ...userCredential.user, displayName: name };
+      handleSignInSuccess(updatedUser, 'Email');
+    } catch (error: any) {
+      if (error.code === 'auth/email-already-in-use') {
+        setAuthError('This email is already in use. Please log in or use a different email.');
+      } else {
+        handleSignInError(error, 'Email');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const signInWithEmail = async (email: string, password: string) => {
+    setLoading(true);
+    clearError();
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      handleSignInSuccess(userCredential.user, 'Email');
     } catch (error) {
-      handleSignInError(error, 'X (Twitter)');
+      handleSignInError(error, 'Email');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -135,10 +165,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const openAuthDialog = (mode: 'login' | 'signup') => {
     setAuthDialogMode(mode);
     setIsAuthDialogOpen(true);
+    clearError();
   };
 
   const closeAuthDialog = () => {
     setIsAuthDialogOpen(false);
+    clearError();
   };
 
   const value = {
@@ -146,10 +178,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     loading,
     isAuthDialogOpen,
     authDialogMode,
+    authError,
     signInWithGoogle,
     signInWithFacebook,
     signInWithDiscord,
     signInWithX,
+    signUpWithEmail,
+    signInWithEmail,
     signOut,
     openAuthDialog,
     closeAuthDialog,
