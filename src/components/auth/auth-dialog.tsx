@@ -9,11 +9,22 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Chrome, Facebook, Disc, Twitter, Mail, Loader2 } from 'lucide-react'; 
+import { Chrome, Facebook, Twitter, Mail, Loader2 } from 'lucide-react'; 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useState } from 'react';
+
+const MicrosoftIcon = () => (
+  <svg className="mr-2 h-4 w-4" viewBox="0 0 23 23">
+    <path fill="#f3f3f3" d="M0 0h23v23H0z" />
+    <path fill="#F35325" d="M1 1h10v10H1z" />
+    <path fill="#81BC06" d="M12 1h10v10H12z" />
+    <path fill="#05A6F0" d="M1 12h10v10H1z" />
+    <path fill="#FFB900" d="M12 12h10v10H12z" />
+  </svg>
+);
+
 
 export default function AuthDialog() {
   const {
@@ -22,7 +33,7 @@ export default function AuthDialog() {
     authDialogMode,
     signInWithGoogle,
     signInWithFacebook,
-    signInWithDiscord,
+    signInWithMicrosoft,
     signInWithX,
     signInWithEmail,
     signUpWithEmail,
@@ -75,8 +86,8 @@ export default function AuthDialog() {
           <Button variant="outline" onClick={signInWithFacebook}>
             <Facebook className="mr-2 h-4 w-4" /> Continue with Facebook
           </Button>
-           <Button variant="outline" onClick={signInWithDiscord}>
-            <Disc className="mr-2 h-4 w-4" /> Continue with Discord
+           <Button variant="outline" onClick={signInWithMicrosoft}>
+            <MicrosoftIcon /> Continue with Microsoft
           </Button>
           <Button variant="outline" onClick={signInWithX}>
             <Twitter className="mr-2 h-4 w-4" /> Continue with X

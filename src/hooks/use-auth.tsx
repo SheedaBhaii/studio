@@ -31,7 +31,7 @@ type AuthState = {
   authError: string | null;
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
-  signInWithDiscord: () => Promise<void>;
+  signInWithMicrosoft: () => Promise<void>;
   signInWithX: () => Promise<void>;
   signUpWithEmail: (email: string, password: string, name: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
@@ -101,11 +101,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await signInWithProvider(new FacebookAuthProvider(), 'Facebook');
   };
   
-  const signInWithDiscord = async () => {
-    const provider = new OAuthProvider('discord.com');
-    provider.addScope('identify');
-    provider.addScope('email');
-    await signInWithProvider(provider, 'Discord');
+  const signInWithMicrosoft = async () => {
+    const provider = new OAuthProvider('microsoft.com');
+    await signInWithProvider(provider, 'Microsoft');
   };
 
   const signInWithX = async () => {
@@ -181,7 +179,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     authError,
     signInWithGoogle,
     signInWithFacebook,
-    signInWithDiscord,
+    signInWithMicrosoft,
     signInWithX,
     signUpWithEmail,
     signInWithEmail,
