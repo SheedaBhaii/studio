@@ -107,7 +107,7 @@ export default function AuthDialog() {
           {authError && <p className="text-sm text-destructive text-center">{authError}</p>}
           <Button type="submit" className="w-full" disabled={authLoading}>
             {authLoading ? <Loader2 className="animate-spin" /> : <Mail />}
-            Continue with Email
+            {isLogin ? 'Login' : 'Continue with Email'}
           </Button>
         </form>
 
