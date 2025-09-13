@@ -3,49 +3,49 @@
     {
       "id": "hero-image",
       "description": "A sleek, modern gaming and workstation PC setup with ambient lighting.",
-      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageUrl": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=1920&h=1080&fit=crop",
       "imageHint": "gaming setup"
     },
     {
       "id": "gpu",
       "description": "Close-up of a powerful GPU inside a PC case.",
-      "imageUrl": "https://picsum.photos/seed/gpu/600/400",
+      "imageUrl": "https://images.unsplash.com/photo-1581351123004-757df051db2e?q=80&w=600&h=400&fit=crop",
       "imageHint": "graphics card"
     },
     {
       "id": "monitor",
-      "description": "The Ease G24i18 monitor displaying a vibrant image.",
-      "imageUrl": "https://picsum.photos/seed/monitor/600/400",
+      "description": "A modern computer monitor displaying a vibrant image.",
+      "imageUrl": "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?q=80&w=600&h=400&fit=crop",
       "imageHint": "computer monitor"
     },
     {
       "id": "peripheral-1",
-      "description": "The Razer Mamba Elite mouse.",
-      "imageUrl": "https://picsum.photos/seed/mouse/600/400",
+      "description": "A gaming mouse with RGB lighting.",
+      "imageUrl": "https://images.unsplash.com/photo-1615663249856-559100146a48?q=80&w=600&h=400&fit=crop",
       "imageHint": "gaming mouse"
     },
     {
       "id": "peripheral-2",
-      "description": "The Razer Kraken TE headset.",
-      "imageUrl": "https://picsum.photos/seed/headset/600/400",
+      "description": "A pair of stylish gaming headphones.",
+      "imageUrl": "https://images.unsplash.com/photo-1629007955849-3c8c0f2b3b80?q=80&w=600&h=400&fit=crop",
       "imageHint": "gaming headset"
     },
     {
       "id": "testimonial-1",
       "description": "A female architecture student working on a laptop with a complex 3D model.",
-      "imageUrl": "https://picsum.photos/seed/archstudent/100/100",
+      "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=100&h=100&fit=crop",
       "imageHint": "woman architect"
     },
     {
       "id": "testimonial-2",
       "description": "A male professional architect at his desk with blueprints.",
-      "imageUrl": "https://picsum.photos/seed/proarch/100/100",
+      "imageUrl": "https://images.unsplash.com/photo-1563986768711-b3B1dc383833?q=80&w=100&h=100&fit=crop",
       "imageHint": "man architect"
     },
     {
       "id": "testimonial-3",
       "description": "A young person intensely focused on a gaming session.",
-      "imageUrl": "https://picsum.photos/seed/gamer/100/100",
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=100&h=100&fit=crop",
       "imageHint": "person gaming"
     }
   ]
