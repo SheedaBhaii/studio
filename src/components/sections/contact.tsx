@@ -11,6 +11,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Loader2, Mail, MapPin, Phone, Send, Twitter, Instagram, Facebook, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const contactInitialState = {
   message: '',
@@ -30,6 +32,7 @@ function ContactSubmitButton() {
 export default function Contact() {
   const [state, formAction] = useActionState(submitContactForm, contactInitialState);
   const formRef = useRef<HTMLFormElement>(null);
+  const contactImage = PlaceHolderImages.find(p => p.id === 'contact');
 
   useEffect(() => {
     if (state.message && !state.errors) {
@@ -46,8 +49,8 @@ export default function Contact() {
             Have questions? Want to schedule a demo? We'd love to hear from you.
           </p>
         </div>
-        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div className="rounded-lg bg-card p-8 shadow-md">
+        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2 bg-card shadow-md rounded-lg overflow-hidden">
+          <div className="p-8">
             <h3 className="text-2xl font-bold">Send us a message</h3>
             <form ref={formRef} action={formAction} className="mt-6 space-y-6">
               <div className="space-y-2">
@@ -74,34 +77,46 @@ export default function Contact() {
               )}
             </form>
           </div>
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold">Contact Information</h3>
-            <div className="space-y-4 text-muted-foreground">
-              <div className="flex items-center gap-4">
-                <MapPin className="h-5 w-5 text-primary" />
-                <span>123 Tech Street, Silicon Valley, CA 94000</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <Phone className="h-5 w-5 text-primary" />
-                <span>(123) 456-7890</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <Mail className="h-5 w-5 text-primary" />
-                <span>contact@archplay.rentals</span>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold text-card-foreground">Business Hours</h4>
-              <p className="text-muted-foreground">Monday - Friday: 9:00 AM - 6:00 PM</p>
-              <p className="text-muted-foreground">Saturday: 10:00 AM - 4:00 PM</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-card-foreground">Follow Us</h4>
-              <div className="mt-2 flex space-x-4">
-                <Link href="#" className="text-muted-foreground hover:text-primary"><Twitter className="h-6 w-6" /></Link>
-                <Link href="#" className="text-muted-foreground hover:text-primary"><Instagram className="h-6 w-6" /></Link>
-                <Link href="#" className="text-muted-foreground hover:text-primary"><Facebook className="h-6 w-6" /></Link>
-              </div>
+          <div className="relative min-h-[400px] lg:min-h-0">
+            {contactImage && (
+              <Image 
+                src={contactImage.imageUrl}
+                alt={contactImage.description}
+                fill
+                className="object-cover"
+                data-ai-hint={contactImage.imageHint}
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent lg:bg-gradient-to-r" />
+            <div className="absolute inset-0 p-8 flex flex-col justify-end text-primary-foreground">
+                <h3 className="text-2xl font-bold">Contact Information</h3>
+                <div className="mt-4 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <MapPin className="h-5 w-5 text-accent" />
+                    <span>123 Tech Street, Silicon Valley, CA 94000</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Phone className="h-5 w-5 text-accent" />
+                    <span>(123) 456-7890</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Mail className="h-5 w-5 text-accent" />
+                    <span>contact@archplay.rentals</span>
+                  </div>
+                </div>
+                <div className='mt-6'>
+                  <h4 className="font-semibold">Business Hours</h4>
+                  <p className="opacity-80">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                  <p className="opacity-80">Saturday: 10:00 AM - 4:00 PM</p>
+                </div>
+                <div className='mt-6'>
+                  <h4 className="font-semibold">Follow Us</h4>
+                  <div className="mt-2 flex space-x-4">
+                    <Link href="#" className="opacity-80 hover:opacity-100"><Twitter className="h-6 w-6" /></Link>
+                    <Link href="#" className="opacity-80 hover:opacity-100"><Instagram className="h-6 w-6" /></Link>
+                    <Link href="#" className="opacity-80 hover:opacity-100"><Facebook className="h-6 w-6" /></Link>
+                  </div>
+                </div>
             </div>
           </div>
         </div>

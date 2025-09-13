@@ -9,13 +9,13 @@
     {
       "id": "gpu",
       "description": "Close-up of a powerful GPU inside a PC case.",
-      "imageUrl": "https://images.unsplash.com/photo-1581351123004-757df051db2e?q=80&w=600&h=400&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1627814022373-b3b3e4f3c750?q=80&w=600&h=400&fit=crop",
       "imageHint": "graphics card"
     },
     {
       "id": "monitor",
       "description": "A modern computer monitor displaying a vibrant image.",
-      "imageUrl": "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?q=80&w=600&h=400&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1598134493399-2a14324f4ead?q=80&w=600&h=400&fit=crop",
       "imageHint": "computer monitor"
     },
     {
@@ -27,26 +27,32 @@
     {
       "id": "peripheral-2",
       "description": "A pair of stylish gaming headphones.",
-      "imageUrl": "https://images.unsplash.com/photo-1629007955849-3c8c0f2b3b80?q=80&w=600&h=400&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1585298723682-71155614e1b7?q=80&w=600&h=400&fit=crop",
       "imageHint": "gaming headset"
     },
     {
       "id": "testimonial-1",
       "description": "A female architecture student working on a laptop with a complex 3D model.",
-      "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=100&h=100&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=100&h=100&fit=crop",
       "imageHint": "woman architect"
     },
     {
       "id": "testimonial-2",
       "description": "A male professional architect at his desk with blueprints.",
-      "imageUrl": "https://images.unsplash.com/photo-1563986768711-b3B1dc383833?q=80&w=100&h=100&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?q=80&w=100&h=100&fit=crop",
       "imageHint": "man architect"
     },
     {
       "id": "testimonial-3",
       "description": "A young person intensely focused on a gaming session.",
-      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=100&h=100&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1589241064952-474f7556d19c?q=80&w=100&h=100&fit=crop",
       "imageHint": "person gaming"
+    },
+    {
+      "id": "contact",
+      "description": "An office environment with people working on computers.",
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600&h=800&fit=crop",
+      "imageHint": "office team"
     }
   ]
 }
