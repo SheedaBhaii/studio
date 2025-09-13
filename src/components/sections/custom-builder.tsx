@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { getPCRecommendation } from '@/app/actions';
 
 import { Button } from '@/components/ui/button';
@@ -63,7 +64,7 @@ function RecommendationResult({ recommendation }: { recommendation: RecommendPCC
 }
 
 export default function CustomBuilder() {
-  const [state, formAction] = useFormState(getPCRecommendation, initialState);
+  const [state, formAction] = useActionState(getPCRecommendation, initialState);
 
   return (
     <section id="builder" className="py-16 sm:py-24 bg-secondary/50">
