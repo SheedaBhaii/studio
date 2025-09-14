@@ -229,10 +229,21 @@ export default function ClientLayout({
     const yearEl = document.getElementById("year");
     if(yearEl) yearEl.textContent = new Date().getFullYear().toString();
 
+    const gpuStatsEl = document.getElementById('gpu-stats');
+    const updateStats = () => {
+      if (gpuStatsEl) {
+        const gpu = Math.floor(Math.random() * (95 - 60 + 1) + 60);
+        const temp = Math.floor(Math.random() * (75 - 58 + 1) + 58);
+        gpuStatsEl.textContent = `GPU ${gpu}% • ${temp}°C`;
+      }
+    };
+
+    const statsInterval = setInterval(updateStats, 1500);
 
     return () => {
       // Cleanup on component unmount
       if (themeToggle) themeToggle.removeEventListener("change", toggleTheme);
+       clearInterval(statsInterval);
     };
 
   }, []);
