@@ -174,19 +174,19 @@ export default function Home() {
           <div className="grid-3">
             <div className="card card-pad">
               <h3>Standard</h3>
-              <div className="price">Pkr4/hr</div>
+              <div className="price">1000 Pkr/hr</div>
               <p className="muted">Priority: Standard • Queue ETA</p>
               <a href="#machines" className="btn btn-primary">Choose</a>
             </div>
             <div className="card card-pad">
               <h3>Student</h3>
-              <div className="price">Pkr3/hr</div>
+              <div className="price">500 Pkr/hr</div>
               <p className="muted">Verify university email for discount</p>
               <a href="#machines" className="btn btn-primary">Choose</a>
             </div>
             <div className="card card-pad">
               <h3>Pro</h3>
-              <div className="price">Pkr6/hr</div>
+              <div className="price">1500 Pkr/hr</div>
               <p className="muted">Priority: High • Shorter queues</p>
               <a href="#machines" className="btn btn-primary">Choose</a>
             </div>
@@ -304,8 +304,8 @@ export default function Home() {
           "brand":{"@type":"Brand","name":"ArchPlay PCs"},
           "offers":{
             "@type":"AggregateOffer",
-            "lowPrice":"3.00",
-            "highPrice":"6.00",
+            "lowPrice":"500.00",
+            "highPrice":"1500.00",
             "priceCurrency":"PKR",
             "offerCount":"3"
           },
