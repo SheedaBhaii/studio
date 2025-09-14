@@ -11,13 +11,6 @@ import { Label } from '@/components/ui/label';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 
 
 // --- Contact Form Component ---
@@ -319,8 +312,8 @@ export default function Home() {
       <section id="support" className="route">
         <h2 className="section-title">Support</h2>
         <div className="grid-2">
-           <div className="flex flex-col gap-4">
-              <div className="card card-pad">
+           <div>
+              <div className="card card-pad mb-4">
                 <h3>Knowledge base</h3>
                 <ul>
                   <li>Getting started (Architects, Gamers)</li>
