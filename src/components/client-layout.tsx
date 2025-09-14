@@ -230,11 +230,18 @@ export default function ClientLayout({
     if(yearEl) yearEl.textContent = new Date().getFullYear().toString();
 
     const gpuStatsEl = document.getElementById('gpu-stats');
+    const latencyStatsEl = document.getElementById('latency-stats');
     let tempCounter = 0;
     let currentTemp = 62;
     const updateStats = () => {
+      const gpu = Math.floor(Math.random() * (95 - 60 + 1) + 60);
+      const latency = Math.floor(Math.random() * (19 - 5 + 1)) + 5;
+      
+      if (latencyStatsEl) {
+        latencyStatsEl.textContent = `Remote session connected — ${latency} ms`;
+      }
+
       if (gpuStatsEl) {
-        const gpu = Math.floor(Math.random() * (95 - 60 + 1) + 60);
         tempCounter++;
         if (tempCounter > 4) { // Update temp every 4 intervals (6 seconds)
             currentTemp = Math.floor(Math.random() * (70 - 58 + 1) + 58);

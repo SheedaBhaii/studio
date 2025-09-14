@@ -81,7 +81,7 @@ export default function Home() {
                   <div className="screen-ui">
                     <div className="status-bar">
                       <span className="status-dot" aria-hidden="true"></span>
-                      <span className="muted">Remote session connected — 8 ms</span>
+                      <span id="latency-stats" className="muted">Remote session connected — 8 ms</span>
                     </div>
                     <div className="window" role="img" aria-label="Animated render progress">
                       <div style={{padding:'12px',borderBottom:'1px solid var(--border)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
