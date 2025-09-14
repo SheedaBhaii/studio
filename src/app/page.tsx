@@ -76,42 +76,6 @@ const testimonials = [
     quote: '“Our studio in Islamabad was up against a tight deadline for an international client, and our local render farm was maxed out. ArchPlay’s shared render queue was a game-changer. Our team seamlessly offloaded several scenes, and the performance was rock-solid. We delivered the project ahead of schedule and impressed our client.”',
      avatar: PlaceHolderImages.find(p => p.id === 'testimonial-2')
   },
-  {
-    name: 'Zainab Ansari',
-    role: 'Freelance 3D Artist',
-    quote: '“Working from my home in Faisalabad, I need access to serious power without the investment. ArchPlay lets me fire up a beast of a machine for complex Blender scenes. The file sync is seamless, and I can deliver high-quality renders to my international clients faster than ever. It has truly leveled up my freelance business.”',
-    avatar: PlaceHolderImages.find(p => p.id === 'testimonial-4')
-  },
-  {
-    name: 'Usman Tariq',
-    role: 'Esports Enthusiast',
-    quote: '“The latency is unreal. I get single-digit ping playing Valorant, and it feels like the PC is right under my desk. For someone in Rawalpindi who takes competitive gaming seriously, this is a revolutionary service. I can practice on high-end hardware without owning it.”',
-    avatar: PlaceHolderImages.find(p => p.id === 'testimonial-5')
-  },
-  {
-    name: 'Sana Javed',
-    role: 'VFX Student',
-    quote: '“My laptop could never handle complex simulations in Houdini. With ArchPlay, I can run heavy simulations for my university projects in Multan without any crashes. The power is on-demand, and it’s surprisingly affordable. It’s an essential tool for my studies now.”',
-    avatar: PlaceHolderImages.find(p => p.id === 'testimonial-6')
-  },
-   {
-    name: 'Ali Raza',
-    role: 'Lead Game Developer',
-    quote: '“Our remote team in Peshawar uses ArchPlay to test our game builds on different high-end configurations. It has streamlined our QA process significantly. The ability to quickly provision powerful machines with specific GPUs has been invaluable for debugging and performance tuning.”',
-    avatar: PlaceHolderImages.find(p => p.id === 'testimonial-7')
-  },
-  {
-    name: 'Hina Altaf',
-    role: 'Interior Designer',
-    quote: '“Real-time rendering in Lumion and Twinmotion is critical for my client presentations. My office is in Gujranwala, and with ArchPlay, I can conduct live, smooth walkthroughs of my designs without lag. It gives my presentations a professional edge that clients love.”',
-    avatar: PlaceHolderImages.find(p => p.id === 'testimonial-8')
-  },
-  {
-    name: 'Kamran Akmal',
-    role: 'Cyberpunk 2077 Fan',
-    quote: '“I finally got to experience Cyberpunk 2077 with path tracing maxed out, and it was breathtaking. My own PC could never handle it. Streaming from Quetta, the experience was flawless and visually stunning. It’s like having a supercomputer just for gaming.”',
-    avatar: PlaceHolderImages.find(p => p.id === 'testimonial-9')
-  },
 ];
 
 export default function Home() {
@@ -298,42 +262,32 @@ export default function Home() {
       
       <section id="reviews" className="route">
         <h2 className="section-title">Reviews</h2>
-        <Carousel className="w-full" opts={{ align: "start", loop: true }}>
-          <CarouselContent>
-            {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, slideIndex) => (
-              <CarouselItem key={slideIndex} className="md:basis-1/1 lg:basis-1/1">
-                <div className="grid-3">
-                  {testimonials.slice(slideIndex * 3, slideIndex * 3 + 3).map((testimonial, reviewIndex) => (
-                    <div key={reviewIndex} className="card card-pad">
-                      <div className="flex items-start gap-4">
-                        {testimonial.avatar && (
-                           <Image 
-                              src={testimonial.avatar.imageUrl} 
-                              alt={testimonial.avatar.description}
-                              width={40}
-                              height={40}
-                              className="rounded-full"
-                              data-ai-hint={testimonial.avatar.imageHint}
-                            />
-                        )}
-                        <div>
-                          <p className="font-semibold">{testimonial.name}</p>
-                          <p className="text-sm muted">{testimonial.role}</p>
-                        </div>
-                      </div>
-                       <div className="flex mt-2">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
-                       </div>
-                      <p className="mt-2 italic">{testimonial.quote}</p>
-                    </div>
-                  ))}
+        <div className="grid-3">
+          {testimonials.map((testimonial, reviewIndex) => (
+            <div key={reviewIndex} className="card card-pad">
+              <div className="flex items-start gap-4">
+                {testimonial.avatar && (
+                   <Image 
+                      src={testimonial.avatar.imageUrl} 
+                      alt={testimonial.avatar.description}
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                      data-ai-hint={testimonial.avatar.imageHint}
+                    />
+                )}
+                <div>
+                  <p className="font-semibold">{testimonial.name}</p>
+                  <p className="text-sm muted">{testimonial.role}</p>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+              </div>
+               <div className="flex mt-2">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+               </div>
+              <p className="mt-2 italic">{testimonial.quote}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="faq" className="route">

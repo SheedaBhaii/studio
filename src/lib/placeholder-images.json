@@ -53,42 +53,6 @@
       "description": "An office environment with people working on computers.",
       "imageUrl": "https://picsum.photos/seed/9/600/800",
       "imageHint": "office team"
-    },
-    {
-      "id": "testimonial-4",
-      "description": "A freelance 3D artist working on a powerful computer.",
-      "imageUrl": "https://picsum.photos/seed/10/100/100",
-      "imageHint": "woman creative"
-    },
-    {
-      "id": "testimonial-5",
-      "description": "An esports enthusiast celebrating a win in front of a computer.",
-      "imageUrl": "https://picsum.photos/seed/11/100/100",
-      "imageHint": "man gaming"
-    },
-    {
-      "id": "testimonial-6",
-      "description": "A VFX student working on a complex simulation on her computer.",
-      "imageUrl": "https://picsum.photos/seed/12/100/100",
-      "imageHint": "woman student"
-    },
-    {
-      "id": "testimonial-7",
-      "description": "A male game developer testing a game on a PC.",
-      "imageUrl": "https://picsum.photos/seed/13/100/100",
-      "imageHint": "man developer"
-    },
-    {
-      "id": "testimonial-8",
-      "description": "A female interior designer presenting a design on a large screen.",
-      "imageUrl": "https://picsum.photos/seed/14/100/100",
-      "imageHint": "woman designer"
-    },
-    {
-      "id": "testimonial-9",
-      "description": "A person playing a visually stunning video game on a high-end PC.",
-      "imageUrl": "https://picsum.photos/seed/15/100/100",
-      "imageHint": "person playing"
     }
   ]
 }
