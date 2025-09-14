@@ -221,7 +221,7 @@ export default function Home() {
 
       <section id="machines" className="route">
         <h2 className="section-title">Machine Spotlight</h2>
-        <div className="grid-3">
+        <div className="grid-2">
           <div className="card card-pad">
             <h3>Pro Studio RX 6800</h3>
             <p className="muted">Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.</p>
@@ -250,35 +250,38 @@ export default function Home() {
                <a href="#pricing" className="btn btn-primary">Reserve</a>
             </div>
           </div>
-          <div className="card card-pad">
-            <h3>Reviews</h3>
-             <div className="space-y-4">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  {testimonial.avatar && (
-                     <Image 
-                        src={testimonial.avatar.imageUrl} 
-                        alt={testimonial.avatar.description}
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                        data-ai-hint={testimonial.avatar.imageHint}
-                      />
-                  )}
-                  <div>
-                    <div className="flex items-center gap-2">
-                       <p className="font-semibold">{testimonial.name}</p>
-                       <div className="flex">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
-                       </div>
-                    </div>
-                    <p className="text-sm muted">{testimonial.role}</p>
-                    <p className="mt-1 text-sm italic">{testimonial.quote}</p>
+        </div>
+      </section>
+      
+      <section id="reviews" className="route">
+        <h2 className="section-title">Reviews</h2>
+        <div className="grid-3">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="card card-pad">
+              <div className="flex items-start gap-4">
+                {testimonial.avatar && (
+                   <Image 
+                      src={testimonial.avatar.imageUrl} 
+                      alt={testimonial.avatar.description}
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                      data-ai-hint={testimonial.avatar.imageHint}
+                    />
+                )}
+                <div>
+                  <div className="flex items-center gap-2">
+                     <p className="font-semibold">{testimonial.name}</p>
                   </div>
+                  <p className="text-sm muted">{testimonial.role}</p>
                 </div>
-              ))}
+              </div>
+               <div className="flex mt-2">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+               </div>
+              <p className="mt-2 text-sm italic">{testimonial.quote}</p>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -378,3 +381,4 @@ export default function Home() {
     </main>
   );
 }
+
