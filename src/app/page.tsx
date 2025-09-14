@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Image from 'next/image';
+import { Star } from 'lucide-react';
 
 
 // --- Contact Form Component ---
@@ -46,21 +48,26 @@ function ContactForm() {
   );
 }
 
+
+
 const testimonials = [
   {
     name: 'A. Patel',
     role: 'Arch Student',
     quote: '“Rendered a 4K walkthrough in hours, not days.”',
+    avatar: PlaceHolderImages.find(p => p.id === 'testimonial-1')
   },
   {
     name: 'L. Chen',
     role: 'Gamer',
     quote: '“Low latency was good enough for competitive shooters.”',
+     avatar: PlaceHolderImages.find(p => p.id === 'testimonial-3')
   },
   {
     name: 'C. Romero',
     role: 'Studio Lead',
     quote: '“Our team shared a render queue during a deadline.”',
+     avatar: PlaceHolderImages.find(p => p.id === 'testimonial-2')
   },
 ];
 
@@ -214,7 +221,7 @@ export default function Home() {
 
       <section id="machines" className="route">
         <h2 className="section-title">Machine Spotlight</h2>
-        <div className="grid-2">
+        <div className="grid-3">
           <div className="card card-pad">
             <h3>Pro Studio RX 6800</h3>
             <p className="muted">Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.</p>
@@ -229,15 +236,44 @@ export default function Home() {
                <a href="#pricing" className="btn btn-primary">Reserve</a>
             </div>
           </div>
-          <div className="card card-pad h-full flex flex-col">
+          <div className="card card-pad">
+            <h3>Gamer's Edge RTX 3070</h3>
+            <p className="muted">A balanced powerhouse for 1440p gaming and creative workloads.</p>
+            <div className="machine-specs">
+              <div className="spec-k">CPU</div><div>AMD Ryzen 5 5600</div>
+              <div className="spec-k">GPU</div><div>Nvidia RTX 3070</div>
+              <div className="spec-k">RAM</div><div>32GB DDR4 3200 MHz</div>
+              <div className="spec-k">Storage</div><div>2 TB NVMe SSD</div>
+            </div>
+            <div style={{marginTop:'12px'}} className="note">"The 'Gamer's Edge' is perfect for high-framerate 1440p gaming and demanding creative tasks like video editing and 3D modeling. A true all-rounder."</div>
+            <div className="cta-row" style={{marginTop:'12px'}}>
+               <a href="#pricing" className="btn btn-primary">Reserve</a>
+            </div>
+          </div>
+          <div className="card card-pad">
             <h3>Reviews</h3>
-            <div className="space-y-6 flex-1 flex flex-col justify-between">
+             <div className="space-y-4">
               {testimonials.map((testimonial, index) => (
-                <div key={index}>
+                <div key={index} className="flex items-start gap-4">
+                  {testimonial.avatar && (
+                     <Image 
+                        src={testimonial.avatar.imageUrl} 
+                        alt={testimonial.avatar.description}
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                        data-ai-hint={testimonial.avatar.imageHint}
+                      />
+                  )}
                   <div>
-                    <p className="font-semibold">{testimonial.name}</p>
+                    <div className="flex items-center gap-2">
+                       <p className="font-semibold">{testimonial.name}</p>
+                       <div className="flex">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
+                       </div>
+                    </div>
                     <p className="text-sm muted">{testimonial.role}</p>
-                    <p className="mt-2 text-sm italic">{testimonial.quote}</p>
+                    <p className="mt-1 text-sm italic">{testimonial.quote}</p>
                   </div>
                 </div>
               ))}
