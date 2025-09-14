@@ -243,7 +243,7 @@ export default function ClientLayout({
 
       if (gpuStatsEl) {
         tempCounter++;
-        if (tempCounter > 4) { // Update temp every 4 intervals (6 seconds)
+        if (tempCounter > 4) { // Update temp every 4 intervals (8.4 seconds)
             currentTemp = Math.floor(Math.random() * (70 - 58 + 1) + 58);
             tempCounter = 0;
         }
@@ -251,7 +251,7 @@ export default function ClientLayout({
       }
     };
 
-    const statsInterval = setInterval(updateStats, 1500);
+    const statsInterval = setInterval(updateStats, 2100);
 
     return () => {
       // Cleanup on component unmount
