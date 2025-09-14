@@ -1,55 +1,8 @@
 
 'use server';
 
-import {
-  recommendPCConfiguration,
-  type RecommendPCConfigurationOutput,
-} from '@/ai/flows/pc-decision-gen-ai';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-
-// --- PC Recommendation Action ---
-
-const pcFormSchema = z.object({
-  softwareRequirements: z.string().min(10, {
-    message: 'Please describe the software you use in a bit more detail.',
-  }),
-  gameRequirements: z.string().min(10, {
-    message: 'Please describe the games you play in a bit more detail.',
-  }),
-  photoDataUri: z.string().optional(),
-});
-
-export async function getPCRecommendation(
-  prevState: any,
-  formData: FormData
-): Promise<{
-  message: string;
-  recommendation?: RecommendPCConfigurationOutput;
-  errors?: any;
-}> {
-  const validatedFields = pcFormSchema.safeParse({
-    softwareRequirements: formData.get('softwareRequirements'),
-    gameRequirements: formData.get('gameRequirements'),
-    photoDataUri: formData.get('photoDataUri'),
-  });
-
-  if (!validatedFields.success) {
-    return {
-      message: 'Please fix the errors below.',
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
-  }
-
-  try {
-    const result = await recommendPCConfiguration(validatedFields.data);
-    return { message: 'success', recommendation: result };
-  } catch (error) {
-    console.error(error);
-    return { message: 'An unexpected error occurred. Please try again.' };
-  }
-}
-
 
 // --- Contact Form Action ---
 

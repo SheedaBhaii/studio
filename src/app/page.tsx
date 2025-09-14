@@ -1,117 +1,13 @@
 
 'use client';
 
-import React, { useState, useActionState, useRef } from 'react';
-import { getPCRecommendation, submitContactForm } from '@/app/actions';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useActionState } from 'react';
+import { submitContactForm } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 
-// --- PC Recommendation Component ---
-function PCRecommendation() {
-  const [state, formAction, pending] = useActionState(getPCRecommendation, null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [fileName, setFileName] = useState('');
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setFileName(file.name);
-    } else {
-      setFileName('');
-    }
-  };
-  
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const file = fileInputRef.current?.files?.[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (loadEvent) => {
-        const base64 = loadEvent.target?.result as string;
-        formData.append('photoDataUri', base64);
-        formAction(formData);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      formAction(formData);
-    }
-  };
-
-
-  return (
-    <Card className="card card-pad">
-      <CardHeader>
-        <CardTitle>Get a PC Recommendation with Gemini</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="muted mb-4">Describe the software you use and the games you play. For a more tailored recommendation, you can also upload a photo of your current setup or a piece of software.</p>
-        <form onSubmit={handleFormSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="softwareRequirements">What software do you primarily use? (e.g., Revit, Blender, AutoCAD)</Label>
-            <Textarea
-              id="softwareRequirements"
-              name="softwareRequirements"
-              placeholder="e.g., I mostly use Revit for architectural designs and occasionally Blender for 3D modeling..."
-              required
-            />
-            {state?.errors?.softwareRequirements && <p className="text-red-500 text-sm mt-1">{state.errors.softwareRequirements}</p>}
-          </div>
-          <div>
-            <Label htmlFor="gameRequirements">What games do you want to play? (e.g., Cyberpunk 2077, Valorant)</Label>
-            <Textarea
-              id="gameRequirements"
-              name="gameRequirements"
-              placeholder="e.g., I'd like to play new AAA titles like Cyberpunk 2077 at high settings, and also competitive games like Valorant."
-              required
-            />
-            {state?.errors?.gameRequirements && <p className="text-red-500 text-sm mt-1">{state.errors.gameRequirements}</p>}
-          </div>
-           <div>
-            <Label htmlFor="photo">Upload a Photo (optional)</Label>
-            <Input
-              id="photo"
-              name="photo"
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              className="hidden"
-            />
-            <Button type="button" variant="outline" onClick={() => fileInputRef.current?.click()}>
-              Choose File
-            </Button>
-            {fileName && <span className="ml-2 text-sm text-muted-foreground">{fileName}</span>}
-          </div>
-          <Button type="submit" disabled={pending} className="btn btn-primary">
-            {pending ? 'Getting Recommendation...' : 'Get Recommendation'}
-          </Button>
-        </form>
-
-        {state?.message === 'success' && state.recommendation && (
-          <div className="mt-6 p-4 border rounded-lg bg-background">
-            <h3 className="font-bold text-lg mb-2">Here is your recommended PC Configuration:</h3>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              <p><strong>GPU:</strong> {state.recommendation.recommendedGPU}</p>
-              <p><strong>CPU:</strong> {state.recommendation.recommendedCPU}</p>
-              <p><strong>RAM:</strong> {state.recommendation.recommendedRAM}</p>
-              <p><strong>Storage:</strong> {state.recommendation.recommendedStorage}</p>
-              <p><strong>Monitor:</strong> {state.recommendation.recommendedMonitor}</p>
-            </div>
-            <p className="mt-4"><strong>Justification:</strong> {state.recommendation.justification}</p>
-          </div>
-        )}
-        {state?.message && state.message !== 'success' && (
-          <div className="mt-4 text-red-500">{state.message}</div>
-        )}
-      </CardContent>
-    </Card>
-  );
-}
 
 // --- Contact Form Component ---
 function ContactForm() {
@@ -223,10 +119,6 @@ export default function Home() {
               <p className="muted">Stripe or PayPal. Auto-invoices, usage meter, and file downloads.</p>
             </div>
           </div>
-        </section>
-        
-        <section className="my-8">
-           <PCRecommendation />
         </section>
 
         <section>
