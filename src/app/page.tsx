@@ -10,14 +10,6 @@ import { Label } from '@/components/ui/label';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-
 
 // --- Contact Form Component ---
 function ContactForm() {
@@ -324,11 +316,15 @@ export default function Home() {
         <div className="grid-2">
           <div className="card card-pad">
             <h3>Knowledge base</h3>
-            <ul>
+            <ul className="space-y-2">
               <li>Getting started (Architects, Gamers)</li>
               <li>Streaming setup: Parsec, Moonlight, WebRTC</li>
               <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
-              <li>Licensing & BYOL</li>
+              <li>Licensing & BYOL (Bring Your Own License)</li>
+              <li>Billing and Payments</li>
+              <li>Troubleshooting Common Issues</li>
+              <li>Understanding Hardware Specs</li>
+              <li>Account & Profile Management</li>
             </ul>
           </div>
           <ContactForm />
