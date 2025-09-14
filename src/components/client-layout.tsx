@@ -15,6 +15,36 @@ import {
   signInWithEmailAndPassword
 } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
+import { ChromeIcon, FacebookIcon, MicIcon } from 'lucide-react';
+
+
+function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="1em" height="1em" {...props}>
+            <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+            <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+            <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.222 0-9.655-3.438-11.288-8.169l-6.571 4.819A20.01 20.01 0 0 0 24 44z" />
+      <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C43.021 36.213 44 31.258 44 24c0-1.341-.138-2.65-.389-3.917z" />
+        </svg>
+    )
+}
+
+function MicrosoftIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="1em" height="1em" {...props}>
+            <path fill="#f35325" d="M22.5 22.5H6v-17h16.5z" />
+            <path fill="#81bc06" d="M42.5 22.5H26v-17h16.5z" />
+            <path fill="#05a6f0" d="M22.5 42.5H6v-17h16.5z" />
+            <path fill="#ffba08" d="M42.5 42.5H26v-17h16.5z" />
+        </svg>
+    )
+}
 
 
 export default function ClientLayout({
@@ -26,12 +56,16 @@ export default function ClientLayout({
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authTab, setAuthTab] = useState('signin');
   const [authError, setAuthError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { toast } = useToast();
 
   const openAuth = (tab: 'signin' | 'signup') => {
     setAuthTab(tab);
     setAuthModalOpen(true);
     setAuthError('');
+    setEmail('');
+    setPassword('');
   };
 
   const closeAuth = () => {
@@ -110,75 +144,54 @@ export default function ClientLayout({
         handleAuthError(error);
       }
     };
-
-    const magicLink = async (mode: 'signin' | 'signup') => {
-      const emailEl = document.getElementById(mode === 'signup' ? 'emailSignUp' : 'emailSignIn') as HTMLInputElement;
-      const email = emailEl?.value;
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setAuthError("Enter a valid email to receive your magic link.");
-        return;
-      }
-      
-      const actionCodeSettings = {
-        url: window.location.href.split('#')[0],
-        handleCodeInApp: true,
-      };
-
-      setAuthError("");
-      try {
-        await sendSignInLinkToEmail(auth, email, actionCodeSettings);
-        window.localStorage.setItem('emailForSignIn', email);
-        toast({
-            title: 'Magic Link Sent!',
-            description: `A magic link has been sent to ${email}. Please check your inbox.`,
-        });
-        closeAuth();
-      } catch (error) {
-        handleAuthError(error);
-      }
-    };
-
-    const password = async (mode: 'signin' | 'signup') => {
-      const emailEl = document.getElementById(mode === 'signup' ? 'emailSignUp' : 'emailSignIn') as HTMLInputElement;
-      const passwordEl = document.getElementById(mode === 'signup' ? 'passwordSignUp' : 'passwordSignIn') as HTMLInputElement;
-      const email = emailEl?.value;
-      const pass = passwordEl?.value;
-
-      if (!pass || pass.length < 6) {
-        setAuthError("Password must be at least 6 characters.");
-        return;
-      }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setAuthError("Please enter a valid email address.");
-        return;
-      }
-
-      setAuthError("");
-      try {
-        let userCredential;
-        if (mode === 'signup') {
-          userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-        } else {
-          userCredential = await signInWithEmailAndPassword(auth, email, pass);
-        }
-        handleAuthSuccess(userCredential.user);
-      } catch(error) {
-        handleAuthError(error);
-      }
-    };
-
     (window as any).oauth = oauth;
-    (window as any).magicLink = magicLink;
-    (window as any).password = password;
+
+    const handleEmailAuth = async (mode: 'signin' | 'signup' | 'magiclink') => {
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            setAuthError("Please enter a valid email address.");
+            return;
+        }
+
+        setAuthError("");
+        try {
+            if (mode === 'magiclink') {
+                const actionCodeSettings = {
+                    url: window.location.href.split('#')[0],
+                    handleCodeInApp: true,
+                };
+                await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+                window.localStorage.setItem('emailForSignIn', email);
+                toast({
+                    title: 'Magic Link Sent!',
+                    description: `A magic link has been sent to ${email}. Please check your inbox.`,
+                });
+                closeAuth();
+            } else {
+                 if (!password || password.length < 6) {
+                    setAuthError("Password must be at least 6 characters.");
+                    return;
+                }
+                let userCredential;
+                if (mode === 'signup') {
+                    userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                } else { // signin
+                    userCredential = await signInWithEmailAndPassword(auth, email, password);
+                }
+                handleAuthSuccess(userCredential.user);
+            }
+        } catch(error) {
+            handleAuthError(error);
+        }
+    }
+
 
     if (isSignInWithEmailLink(auth, window.location.href)) {
-      let email = window.localStorage.getItem('emailForSignIn');
-      if (!email) {
-        email = window.prompt('Please provide your email for confirmation');
+      let emailFromStore = window.localStorage.getItem('emailForSignIn');
+      if (!emailFromStore) {
+        emailFromStore = window.prompt('Please provide your email for confirmation');
       }
-      if (email) {
-        signInWithEmailLink(auth, email, window.location.href)
+      if (emailFromStore) {
+        signInWithEmailLink(auth, emailFromStore, window.location.href)
           .then((result) => {
             window.localStorage.removeItem('emailForSignIn');
             handleAuthSuccess(result.user);
@@ -188,7 +201,50 @@ export default function ClientLayout({
           });
       }
     }
-  }, [toast]);
+
+    const AuthForm = ({ mode }: { mode: 'signin' | 'signup' }) => (
+        <div className="space-y-4">
+            <div className="grid grid-cols-1 gap-2">
+                 <Button variant="outline" onClick={() => oauth('google')}><GoogleIcon className="mr-2" /> Continue with Google</Button>
+                 <Button variant="outline" onClick={() => oauth('microsoft')}><MicrosoftIcon className="mr-2" /> Continue with Microsoft</Button>
+                 <Button variant="outline" onClick={() => oauth('facebook')}><FacebookIcon className="mr-2" /> Continue with Facebook</Button>
+            </div>
+            <div className="relative">
+                <Separator />
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center">
+                    <span className="bg-background px-2 text-sm text-muted-foreground">OR</span>
+                </div>
+            </div>
+            <div className="space-y-2">
+                <Label htmlFor={`email-${mode}`}>Email Address</Label>
+                <Input id={`email-${mode}`} type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </div>
+            <div className="space-y-2">
+                <Label htmlFor={`password-${mode}`}>Password</Label>
+                <Input id={`password-${mode}`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+            {mode === 'signin' && (
+                 <p className="text-right text-sm text-primary hover:underline cursor-pointer" onClick={() => handleEmailAuth('magiclink')}>
+                    Send magic link
+                </p>
+            )}
+
+            <Button onClick={() => handleEmailAuth(mode)} className="w-full">
+                {mode === 'signin' ? 'Sign In' : 'Create Account'}
+            </Button>
+             {mode === 'signup' && (
+                 <p className="text-center text-sm text-muted-foreground">
+                    Already have an account?{' '}
+                     <span className="text-primary hover:underline cursor-pointer" onClick={() => setAuthTab('signin')}>
+                        Sign in
+                    </span>
+                </p>
+            )}
+        </div>
+    );
+    (window as any).AuthForm = AuthForm;
+
+  }, [toast, email, password]);
 
 
   useEffect(() => {
@@ -292,6 +348,54 @@ export default function ClientLayout({
 
   }, []);
 
+  const AuthForm = ({ mode }: { mode: 'signin' | 'signup' }) => (
+    <div className="space-y-4">
+        <div className="grid grid-cols-1 gap-2">
+             <Button variant="outline" onClick={() => (window as any).oauth('google')}><GoogleIcon className="mr-2" /> Continue with Google</Button>
+             <Button variant="outline" onClick={() => (window as any).oauth('microsoft')}><MicrosoftIcon className="mr-2" /> Continue with Microsoft</Button>
+             <Button variant="outline" onClick={() => (window as any).oauth('facebook')}><FacebookIcon className="mr-2" /> Continue with Facebook</Button>
+        </div>
+        <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                    Or continue with
+                </span>
+            </div>
+        </div>
+        <div className="space-y-2">
+            <Label htmlFor={`email-${mode}`}>Email Address</Label>
+            <Input id={`email-${mode}`} type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </div>
+        <div className="space-y-2">
+            <Label htmlFor={`password-${mode}`}>Password</Label>
+            <Input id={`password-${mode}`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        </div>
+         {mode === 'signin' && (
+             <p className="text-right text-sm">
+                <a href="#" className="text-primary hover:underline" onClick={(e) => { e.preventDefault(); (window as any).handleEmailAuth('magiclink'); }}>
+                    Send magic link
+                </a>
+            </p>
+        )}
+
+        <Button onClick={() => (window as any).handleEmailAuth(mode)} className="w-full">
+            {mode === 'signin' ? 'Sign In' : 'Create Account'}
+        </Button>
+         {mode === 'signup' && (
+             <p className="text-center text-sm text-muted-foreground">
+                Already have an account?{' '}
+                 <span className="text-primary hover:underline cursor-pointer" onClick={() => setAuthTab('signin')}>
+                    Sign in
+                </span>
+            </p>
+        )}
+    </div>
+);
+
+
   return (
     <>
       <header className="site">
@@ -343,61 +447,33 @@ export default function ClientLayout({
           </div>
         </div>
       </footer>
-
-       {authModalOpen && (
-        <div id="authModal" className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="auth-title" style={{display: 'flex'}} onKeyDown={(e) => e.key === 'Escape' && closeAuth()}>
-            <div className="modal">
-              <header>
-                <strong id="auth-title">Sign in / Sign up</strong>
-                <button className="btn btn-ghost" onClick={closeAuth} aria-label="Close">✕</button>
-              </header>
-              <div className="modal-body">
-                <div className="tabs" role="tablist" aria-label="Auth tabs">
-                  <button className="tab" id="tab-signin" role="tab" aria-selected={authTab === 'signin'} aria-controls="panel-signin" onClick={() => setAuthTab('signin')}>Sign in</button>
-                  <button className="tab" id="tab-signup" role="tab" aria-selected={authTab === 'signup'} aria-controls="panel-signup" onClick={() => setAuthTab('signup')}>Sign up</button>
-                </div>
-
-                {authError && <div id="authAlert" className="alert alert-danger">{authError}</div>}
-
-                <section id="panel-signin" role="tabpanel" aria-labelledby="tab-signin" style={{display: authTab === 'signin' ? 'block' : 'none' }}>
-                  <div className="provider" onClick={() => (window as any).oauth('google')}>🔵 Continue with Google</div>
-                  <div className="provider" onClick={() => (window as any).oauth('microsoft')}>🟦 Continue with Microsoft</div>
-                  <div className="provider" onClick={() => (window as any).oauth('facebook')}>🔷 Continue with Facebook</div>
-                  <div style={{display:'grid',gap:'8px',marginTop:'6px'}}>
-                    <label>Email for magic link<input id="emailSignIn" type="email" placeholder="you@domain.com" /></label>
-                    <button className="btn btn-primary" onClick={() => (window as any).magicLink('signin')}>Send magic link</button>
-                    <details>
-                      <summary className="muted">Or password</summary>
-                      <label>Password<input id="passwordSignIn" type="password" /></label>
-                      <button className="btn btn-ghost" onClick={() => (window as any).password('signin')}>Sign in</button>
-                    </details>
-                    <p className="note">We only request basic profile & email for login.</p>
-                  </div>
-                </section>
-
-                <section id="panel-signup" role="tabpanel" aria-labelledby="tab-signup" style={{display: authTab === 'signup' ? 'block' : 'none' }}>
-                  <div className="provider" onClick={() => (window as any).oauth('google')}>🔵 Continue with Google</div>
-                  <div className="provider" onClick={() => (window as any).oauth('microsoft')}>🟦 Continue with Microsoft</div>
-                  <div className="provider" onClick={() => (window as any).oauth('facebook')}>🔷 Continue with Facebook</div>
-                  <div style={{display:'grid',gap:'8px',marginTop:'6px'}}>
-                    <label>Email for magic link<input id="emailSignUp" type="email" placeholder="you@school.edu" /></label>
-                    <button className="btn btn-primary" onClick={() => (window as any).magicLink('signup')}>Send magic link</button>
-                    <details>
-                      <summary className="muted">Create password</summary>
-                      <label>Password<input id="passwordSignUp" type="password" /></label>
-                      <button className="btn btn-ghost" onClick={() => (window as any).password('signup')}>Create account</button>
-                    </details>
-                    <p className="note">Duplicate email? We’ll help you link Google/Microsoft/Facebook and Email to one account.</p>
-                  </div>
-                </section>
-
-                <div className="alert alert-info">
-                  To sign in, ensure you've enabled these providers in your Firebase Authentication console and added your domain to the authorized domains.
-                </div>
-              </div>
-            </div>
-        </div>
-      )}
+      
+      <Dialog open={authModalOpen} onOpenChange={setAuthModalOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <Tabs value={authTab} onValueChange={setAuthTab}>
+            <DialogHeader>
+              <DialogTitle className="text-center text-2xl font-bold tracking-tight">
+                  {authTab === 'signin' ? 'Welcome Back' : 'Create an Account'}
+              </DialogTitle>
+              <DialogDescription className="text-center">
+                  {authTab === 'signin' ? "Sign in to access your account." : "Get started with your free trial."}
+              </DialogDescription>
+            </DialogHeader>
+            <TabsList className="grid w-full grid-cols-2 mt-4">
+                <TabsTrigger value="signin">Sign In</TabsTrigger>
+                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+            </TabsList>
+            {authError && <div className="mt-4 text-center text-sm text-red-500 bg-red-500/10 p-2 rounded-md">{authError}</div>}
+            <TabsContent value="signin" className="pt-4">
+                <AuthForm mode="signin" />
+            </TabsContent>
+            <TabsContent value="signup" className="pt-4">
+                <AuthForm mode="signup" />
+            </TabsContent>
+          </Tabs>
+        </DialogContent>
+      </Dialog>
     </>
   );
-}
+
+    
