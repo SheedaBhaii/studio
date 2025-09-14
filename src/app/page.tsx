@@ -317,9 +317,7 @@ export default function Home() {
                             />
                         )}
                         <div>
-                          <div className="flex items-center gap-2">
-                             <p className="font-semibold">{testimonial.name}</p>
-                          </div>
+                          <p className="font-semibold">{testimonial.name}</p>
                           <p className="text-sm muted">{testimonial.role}</p>
                         </div>
                       </div>
