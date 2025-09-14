@@ -7,7 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Star } from 'lucide-react';
 
 // --- Contact Form Component ---
 function ContactForm() {
@@ -44,6 +46,26 @@ function ContactForm() {
   );
 }
 
+const testimonials = [
+  {
+    name: 'A. Patel',
+    role: 'Arch Student',
+    quote: '“Rendered a 4K walkthrough in hours, not days.”',
+    image: PlaceHolderImages.find(img => img.id === 'testimonial-1'),
+  },
+  {
+    name: 'L. Chen',
+    role: 'Gamer',
+    quote: '“Low latency was good enough for competitive shooters.”',
+    image: PlaceHolderImages.find(img => img.id === 'testimonial-2'),
+  },
+  {
+    name: 'C. Romero',
+    role: 'Studio Lead',
+    quote: '“Our team shared a render queue during a deadline.”',
+    image: PlaceHolderImages.find(img => img.id === 'testimonial-3'),
+  },
+];
 
 export default function Home() {
   return (
@@ -212,9 +234,28 @@ export default function Home() {
             </div>
             <div className="card card-pad">
               <h3>Testimonials</h3>
-              <p>“Rendered a 4K walkthrough in hours, not days.” — A. Patel, Arch Student</p>
-              <p>“Low latency was good enough for competitive shooters.” — L. Chen, Gamer</p>
-              <p>“Our team shared a render queue during a deadline.” — C. Romero, Studio Lead</p>
+              <div className="space-y-6">
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <Avatar>
+                      {testimonial.image && (
+                         <AvatarImage src={testimonial.image.imageUrl} alt={testimonial.name} data-ai-hint={testimonial.image.imageHint} />
+                      )}
+                      <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="font-semibold">{testimonial.name}</p>
+                      <p className="text-sm muted">{testimonial.role}</p>
+                      <div className="flex items-center gap-0.5 mt-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <p className="mt-2 text-sm italic">{testimonial.quote}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
