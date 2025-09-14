@@ -313,10 +313,10 @@ export default function Home() {
 
       <section id="support" className="route">
         <h2 className="section-title">Support</h2>
-        <div className="grid-2">
+        <div className="grid-2 gap-4">
           <div className="card card-pad">
-            <h3>Knowledge base</h3>
-            <ul className="space-y-2">
+            <h3>Help Center</h3>
+            <ul className="space-y-2 mt-4">
               <li>Getting started (Architects, Gamers)</li>
               <li>Streaming setup: Parsec, Moonlight, WebRTC</li>
               <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
