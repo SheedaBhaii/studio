@@ -90,8 +90,8 @@ export default function Home() {
                       </div>
                       <div style={{padding:'12px',display:'grid',gap:'12px'}}>
                         <div className="render-bar" aria-hidden="true"><div id="renderFill" className="render-fill"></div></div>
-                        <div className="bar"><span id="gpuFill" style={{width:'60%'}}></span></div>
-                        <div className="bar"><span id="netFill" style={{width:'40%',background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
+                        <div className="bar"><span id="gpuFill"></span></div>
+                        <div className="bar"><span id="netFill" style={{background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
                         <div className="note">Subtle motion preview. Actual sessions stream at native framerate.</div>
                       </div>
                     </div>
@@ -465,9 +465,9 @@ export default function Home() {
           <div className="card card-pad">
             <h3>Live telemetry</h3>
             <div style={{display:'grid',gap:'8px'}}>
-              <div>GPU utilization</div><div className="bar"><span id="dashGpu" style={{width:'35%'}}></span></div>
-              <div>Latency</div><div className="bar"><span id="dashRtt" style={{width:'15%',background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
-              <div>VRAM</div><div className="bar"><span id="dashVram" style={{width:'20%',background:'linear-gradient(90deg,#fbbf24,#f59e0b)'}}></span></div>
+              <div id="dashGpu">GPU utilization <div className="bar"><span /></div></div>
+              <div id="dashRtt">Latency <div className="bar"><span style={{background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}} /></div></div>
+              <div id="dashVram">VRAM <div className="bar"><span style={{background:'linear-gradient(90deg,#fbbf24,#f59e0b)'}} /></div></div>
             </div>
           </div>
         </div>

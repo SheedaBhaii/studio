@@ -70,7 +70,7 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(11,18,32,0.6);backd
 .status-dot{width:8px;height:8px;border-radius:999px;background:var(--success)}
 .window{margin-top:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;height:100%;overflow:hidden}
 .render-bar{height:10px;background:rgba(22,180,211,.15);border-radius:999px;overflow:hidden}
-.render-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#7ee3f6)}
+.render-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#7ee3f6); animation: progress-anim 8s ease-in-out infinite;}
 .how{padding:40px 0}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -126,3 +126,23 @@ tr{background:var(--card)}
 .note{font-size:12px;color:var(--muted)}
 /* Focus */
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:8px}
+
+@keyframes progress-anim {
+  0% { width: 0%; }
+  40% { width: 90%; }
+  60% { width: 95%; }
+  100% { width: 100%; }
+}
+@keyframes bar-anim {
+  0% { width: 40%; }
+  20% { width: 80%; }
+  50% { width: 55%; }
+  80% { width: 90%; }
+  100% { width: 40%; }
+}
+#gpuFill { animation: bar-anim 6s ease-in-out infinite; animation-delay: .2s; }
+#netFill { animation: bar-anim 7s ease-in-out infinite; animation-delay: .5s; }
+
+#dashGpu>span { animation: bar-anim 6s ease-in-out infinite; animation-delay: .2s; }
+#dashRtt>span { animation: bar-anim 7s ease-in-out infinite; animation-delay: .5s; }
+#dashVram>span { animation: bar-anim 5s ease-in-out infinite; animation-delay: .3s; }

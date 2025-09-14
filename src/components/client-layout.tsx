@@ -245,25 +245,6 @@ export default function ClientLayout({
     };
     (window as any).toggleDrawer = toggleDrawer;
 
-    let progress = 0;
-    const animInterval = setInterval(() => {
-      progress = (progress + 2) % 100;
-      const els = {
-        renderFill: document.getElementById("renderFill"),
-        gpuFill: document.getElementById("gpuFill"),
-        netFill: document.getElementById("netFill"),
-        dashGpu: document.getElementById("dashGpu"),
-        dashRtt: document.getElementById("dashRtt"),
-        dashVram: document.getElementById("dashVram"),
-      };
-      if (els.renderFill) els.renderFill.style.width = progress + "%";
-      if (els.gpuFill) els.gpuFill.style.width = (40 + (progress % 40)) + "%";
-      if (els.netFill) els.netFill.style.width = (20 + (progress % 60)) + "%";
-      if (els.dashGpu) els.dashGpu.style.width = (20 + (progress % 60)) + "%";
-      if (els.dashRtt) els.dashRtt.style.width = (10 + (progress % 30)) + "%";
-      if (els.dashVram) els.dashVram.style.width = (15 + (progress % 45)) + "%";
-    }, 120);
-
     const yearEl = document.getElementById("year");
     if(yearEl) yearEl.textContent = new Date().getFullYear().toString();
 
@@ -273,7 +254,6 @@ export default function ClientLayout({
       // Cleanup on component unmount
       window.removeEventListener("hashchange", renderRoute);
       if (themeToggle) themeToggle.removeEventListener("change", toggleTheme);
-      clearInterval(animInterval);
     };
 
   }, []);
