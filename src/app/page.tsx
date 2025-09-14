@@ -201,17 +201,10 @@ export default function Home() {
               <p className="muted">Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.</p>
               <div className="machine-specs">
                 <div className="spec-k">CPU</div><div>AMD Ryzen 5 5600</div>
-                <div className="spec-k">GPU</div><div>Biostar Extreme Gaming RX 6800 16GB</div>
+                <div className="spec-k">GPU</div><div>Asus Rog Strix RX 6800 OC</div>
                 <div className="spec-k">RAM</div><div>16GB DDR4 3200 MHz</div>
                 <div className="spec-k">Storage</div><div>256GB NVMe + 256GB SSD + 4TB external</div>
                 <div className="spec-k">Display</div><div>Ease G24i18 1080p 180Hz</div>
-              </div>
-              <div style={{display:'flex',gap:'8px',marginTop:'12px',flexWrap:'wrap'}}>
-                <span className="chip">Hourly $5</span>
-                <span className="chip">Half-day $25</span>
-                <span className="chip">Day $35</span>
-                <span className="chip">Week $149</span>
-                <span className="chip">Student -20%</span>
               </div>
               <div style={{marginTop:'12px'}} className="note">“Rent the ‘Pro Studio RX6800’ — ideal for high-res renders, GPU-accelerated ray tracing, and 3D viewport performance. Perfect for architecture renders & high-refresh gaming.”</div>
               <div className="cta-row" style={{marginTop:'12px'}}>
