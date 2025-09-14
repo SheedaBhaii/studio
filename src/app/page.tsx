@@ -58,7 +58,7 @@ export default function Home() {
               <div className="cta-row">
                 <a className="btn btn-primary" href="#machines">Book a Machine</a>
                 <a className="btn btn-accent" href="#pricing">See Pricing</a>
-                <button className="btn btn-ghost" onClick={() => (window as any).openAuth('signup')}>Start Free Trial</button>
+                <a className="btn btn-ghost" href="#how-it-works">How It Works</a>
               </div>
               <div className="valprops">
                 <div className="card card-pad">
@@ -207,7 +207,7 @@ export default function Home() {
               </div>
               <div style={{marginTop:'12px'}} className="note">“Rent the ‘Pro Studio RX6800’ — ideal for high-res renders, GPU-accelerated ray tracing, and 3D viewport performance. Perfect for architecture renders & high-refresh gaming.”</div>
               <div className="cta-row" style={{marginTop:'12px'}}>
-                 <button className="btn btn-primary" onClick={() => (window as any).openAuth('signup')}>Reserve</button>
+                 <a href="#pricing" className="btn btn-primary">Reserve</a>
               </div>
             </div>
             <div className="card card-pad">
@@ -292,7 +292,7 @@ export default function Home() {
         </section>
 
         <div style={{margin:'40px 0 20px', textAlign:'center'}}>
-          <button className="btn btn-accent" onClick={() => (window as any).openAuth('signup')}>Start Your Free Trial Now</button>
+          <a className="btn btn-accent" href="#pricing">See Pricing Plans</a>
         </div>
       
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `
