@@ -52,19 +52,19 @@ function ContactForm() {
 
 const testimonials = [
   {
-    name: 'A. Patel',
+    name: 'Fatima Ahmed',
     role: 'Arch Student',
     quote: '“As a student, project deadlines are everything. I was able to render a complex 4K architectural walkthrough in just a few hours, a task that would have taken days on my university’s machines. The hourly pricing is a lifesaver for my budget.”',
     avatar: PlaceHolderImages.find(p => p.id === 'testimonial-1')
   },
   {
-    name: 'L. Chen',
+    name: 'Bilal Khan',
     role: 'Gamer',
     quote: '“I was skeptical about cloud gaming for competitive shooters, but the low latency blew me away. It felt just like playing on a local rig. I was hitting my shots in Apex Legends with no noticeable input lag. It’s my go-to for gaming when I’m traveling.”',
      avatar: PlaceHolderImages.find(p => p.id === 'testimonial-3')
   },
   {
-    name: 'C. Romero',
+    name: 'Ayesha Malik',
     role: 'Studio Lead',
     quote: '“Our studio was up against a tight deadline, and our local render farm was maxed out. ArchPlay’s shared render queue was a game-changer. Our team seamlessly offloaded several scenes, and the performance was rock-solid. We delivered the project ahead of schedule.”',
      avatar: PlaceHolderImages.find(p => p.id === 'testimonial-2')
