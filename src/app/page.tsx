@@ -230,7 +230,7 @@ export default function Home() {
             </div>
           </div>
           <div className="card card-pad h-full flex flex-col">
-            <h3>Testimonials</h3>
+            <h3>Reviews</h3>
             <div className="space-y-6 flex-1 flex flex-col justify-between">
               {testimonials.map((testimonial, index) => (
                 <div key={index}>
