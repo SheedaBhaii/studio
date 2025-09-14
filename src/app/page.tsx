@@ -118,7 +118,6 @@ export default function Home() {
                           </div>
                           <div className="bar"><span id="gpuMemFill" style={{background:'linear-gradient(90deg,#a78bfa,#8b5cf6)'}}></span></div>
                         </div>
-                        <div className="note">Subtle motion preview. Actual sessions stream at native framerate.</div>
                       </div>
                     </div>
                   </div>
