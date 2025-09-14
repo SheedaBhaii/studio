@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Star } from 'lucide-react';
+
 
 // --- Contact Form Component ---
 function ContactForm() {
@@ -51,19 +51,16 @@ const testimonials = [
     name: 'A. Patel',
     role: 'Arch Student',
     quote: '“Rendered a 4K walkthrough in hours, not days.”',
-    image: PlaceHolderImages.find(img => img.id === 'testimonial-1'),
   },
   {
     name: 'L. Chen',
     role: 'Gamer',
     quote: '“Low latency was good enough for competitive shooters.”',
-    image: PlaceHolderImages.find(img => img.id === 'testimonial-2'),
   },
   {
     name: 'C. Romero',
     role: 'Studio Lead',
     quote: '“Our team shared a render queue during a deadline.”',
-    image: PlaceHolderImages.find(img => img.id === 'testimonial-3'),
   },
 ];
 
@@ -232,19 +229,14 @@ export default function Home() {
                <a href="#pricing" className="btn btn-primary">Reserve</a>
             </div>
           </div>
-          <div className="card card-pad">
+          <div className="card card-pad h-full flex flex-col">
             <h3>Testimonials</h3>
-            <div className="space-y-6">
+            <div className="space-y-6 flex-1 flex flex-col justify-between">
               {testimonials.map((testimonial, index) => (
                 <div key={index}>
                   <div>
                     <p className="font-semibold">{testimonial.name}</p>
                     <p className="text-sm muted">{testimonial.role}</p>
-                    <div className="flex items-center gap-0.5 mt-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
                     <p className="mt-2 text-sm italic">{testimonial.quote}</p>
                   </div>
                 </div>
