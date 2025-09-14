@@ -47,7 +47,6 @@ export default function ClientLayout({
     const handleAuthSuccess = (user: any) => {
       console.log("Signed in successfully:", user);
       closeAuth();
-      (window as any).go('#/dashboard');
       toast({
         title: 'Sign In Successful',
         description: `Welcome, ${user.displayName || user.email}!`,
@@ -194,24 +193,6 @@ export default function ClientLayout({
 
   useEffect(() => {
     // --- GENERAL UI LOGIC ---
-    const routes = ["/", "/machines", "/machines/pro-studio-rx6800", "/pricing", "/how-it-works", "/account", "/dashboard", "/support", "/legal", "/about", "/docs"];
-    
-    const renderRoute = () => {
-      const hash = window.location.hash.replace(/^#/, "") || "/";
-      routes.forEach(r => {
-        const el = document.getElementById("route-" + r);
-        if (el) el.classList.toggle("active", r === hash);
-      });
-      // Basic title update
-      if (hash === "/machines/pro-studio-rx6800") document.title = "Pro Studio RX6800 — ArchPlay PCs";
-      else if (hash === "/pricing") document.title = "Pricing — ArchPlay PCs";
-      else document.title = "ArchPlay PCs — High-Power PCs for Architects & Gamers";
-    };
-    window.addEventListener("hashchange", renderRoute);
-    
-    const go = (h: string) => { location.hash = h; };
-    (window as any).go = go;
-
     const themeToggle = document.getElementById("themeToggle") as HTMLInputElement;
     
     const applyTheme = (t: string) => { 
@@ -248,11 +229,9 @@ export default function ClientLayout({
     const yearEl = document.getElementById("year");
     if(yearEl) yearEl.textContent = new Date().getFullYear().toString();
 
-    renderRoute(); // Initial render
 
     return () => {
       // Cleanup on component unmount
-      window.removeEventListener("hashchange", renderRoute);
       if (themeToggle) themeToggle.removeEventListener("change", toggleTheme);
     };
 
@@ -262,17 +241,17 @@ export default function ClientLayout({
     <>
       <header className="site">
         <div className="container nav" role="navigation" aria-label="Primary">
-          <a href="#/" className="brand">
+          <a href="#home" className="brand">
             <div className="logo" aria-hidden="true"><span>AP</span></div>
             <span>ArchPlay PCs</span>
           </a>
           <nav className="navlinks" aria-label="Main links">
-            <a href="#/machines">Machines</a>
-            <a href="#/pricing">Pricing</a>
-            <a href="#/how-it-works">How it works</a>
-            <a href="#/support">Support</a>
-            <a href="#/legal">Legal</a>
-            <a href="#/about">About</a>
+            <a href="#machines">Machines</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#support">Support</a>
+            <a href="#legal">Legal</a>
+            <a href="#about">About</a>
           </nav>
           <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <label className="switch" title="Toggle light/dark">
@@ -280,19 +259,19 @@ export default function ClientLayout({
               <span className="muted" aria-hidden="true">Theme</span>
             </label>
             <button className="btn btn-ghost" onClick={() => openAuth('signin')}>Sign in</button>
-            <a className="btn btn-primary" href="#/account" onClick={(e) => { e.preventDefault(); openAuth('signup'); }}>Start Free Trial</a>
+            <button className="btn btn-primary" onClick={() => openAuth('signup')}>Start Free Trial</button>
             <button className="btn btn-muted mobile-nav-btn" aria-label="Open menu" onClick={() => (window as any).toggleDrawer()}>☰</button>
           </div>
         </div>
         <div id="drawer" className="drawer" role="navigation" aria-label="Mobile menu">
-          <a href="#/" onClick={() => (window as any).toggleDrawer(false)}>Home</a>
-          <a href="#/machines" onClick={() => (window as any).toggleDrawer(false)}>Machines</a>
-          <a href="#/pricing" onClick={() => (window as any).toggleDrawer(false)}>Pricing</a>
-          <a href="#/how-it-works" onClick={() => (window as any).toggleDrawer(false)}>How it works</a>
-          <a href="#/support" onClick={() => (window as any).toggleDrawer(false)}>Support</a>
-          <a href="#/legal" onClick={() => (window as any).toggleDrawer(false)}>Legal</a>
-          <a href="#/about" onClick={() => (window as any).toggleDrawer(false)}>About</a>
-          <a href="#/account" onClick={(e) => { e.preventDefault(); openAuth('signin'); (window as any).toggleDrawer(false);}}>Account</a>
+          <a href="#home" onClick={() => (window as any).toggleDrawer(false)}>Home</a>
+          <a href="#machines" onClick={() => (window as any).toggleDrawer(false)}>Machines</a>
+          <a href="#pricing" onClick={() => (window as any).toggleDrawer(false)}>Pricing</a>
+          <a href="#how-it-works" onClick={() => (window as any).toggleDrawer(false)}>How it works</a>
+          <a href="#support" onClick={() => (window as any).toggleDrawer(false)}>Support</a>
+          <a href="#legal" onClick={() => (window as any).toggleDrawer(false)}>Legal</a>
+          <a href="#about" onClick={() => (window as any).toggleDrawer(false)}>About</a>
+          <a href="#account" onClick={(e) => { e.preventDefault(); openAuth('signin'); (window as any).toggleDrawer(false);}}>Account</a>
         </div>
       </header>
 
@@ -302,9 +281,9 @@ export default function ClientLayout({
         <div className="container" style={{display:'flex',justifyContent:'space-between',gap:'12px',flexWrap:'wrap'}}>
           <div>© <span id="year"></span> ArchPlay PCs</div>
           <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
-            <a href="#/docs">Docs</a>
-            <a href="#/support">Support</a>
-            <a href="#/legal">Legal</a>
+            <a href="#docs">Docs</a>
+            <a href="#support">Support</a>
+            <a href="#legal">Legal</a>
             <a href="#" onClick={(e) => { e.preventDefault(); (window as any).toggleTheme();}}>Toggle theme</a>
           </div>
         </div>
