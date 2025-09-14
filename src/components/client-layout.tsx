@@ -192,7 +192,6 @@ export default function ClientLayout({
 
 
   useEffect(() => {
-    // --- GENERAL UI LOGIC ---
     const themeToggle = document.getElementById("themeToggle") as HTMLInputElement;
     
     const applyTheme = (t: string) => { 
@@ -229,34 +228,61 @@ export default function ClientLayout({
     const yearEl = document.getElementById("year");
     if(yearEl) yearEl.textContent = new Date().getFullYear().toString();
 
+    // --- Hero Animation Logic ---
     const gpuStatsEl = document.getElementById('gpu-stats');
     const latencyStatsEl = document.getElementById('latency-stats');
+    const gpuUtilFillEl = document.getElementById('gpuUtilFill') as HTMLElement;
+    const gpuClockFillEl = document.getElementById('gpuClockFill') as HTMLElement;
+    const gpuMemFillEl = document.getElementById('gpuMemFill') as HTMLElement;
+    const gpuUtilTextEl = document.getElementById('gpu-util-text');
+    const gpuClockTextEl = document.getElementById('gpu-clock-text');
+    const gpuMemTextEl = document.getElementById('gpu-mem-text');
+
     let tempCounter = 0;
     let currentTemp = 62;
-    const updateStats = () => {
-      const gpu = Math.floor(Math.random() * (95 - 60 + 1) + 60);
-      const latency = Math.floor(Math.random() * (19 - 5 + 1)) + 5;
-      
-      if (latencyStatsEl) {
-        latencyStatsEl.textContent = `Remote session connected — ${latency} ms`;
-      }
+    let currentMem = 8.4;
 
+    const updateStats = () => {
+      // GPU Util
+      const gpu = Math.floor(Math.random() * (95 - 60 + 1) + 60);
       if (gpuStatsEl) {
         tempCounter++;
-        if (tempCounter > 4) { // Update temp every 4 intervals (8.4 seconds)
+        if (tempCounter > 4) {
             currentTemp = Math.floor(Math.random() * (70 - 58 + 1) + 58);
             tempCounter = 0;
         }
         gpuStatsEl.textContent = `GPU ${gpu}% • ${currentTemp}°C`;
       }
+       if (gpuUtilFillEl) gpuUtilFillEl.style.width = `${gpu}%`;
+       if (gpuUtilTextEl) gpuUtilTextEl.textContent = `${gpu}%`;
+
+
+      // Latency
+      const latency = Math.floor(Math.random() * (19 - 5 + 1)) + 5;
+      if (latencyStatsEl) {
+        latencyStatsEl.textContent = `Remote session connected — ${latency} ms`;
+      }
+
+      // GPU Clock
+      const clock = Math.floor(Math.random() * (2125 - 1800 + 1) + 1800);
+      if(gpuClockFillEl) gpuClockFillEl.style.width = `${((clock - 500) / (2125 - 500)) * 100}%`;
+      if(gpuClockTextEl) gpuClockTextEl.textContent = `${clock} MHz`;
+
+
+      // GPU Memory
+      currentMem += (Math.random() - 0.5) * 0.5; // Fluctuate slowly
+      if (currentMem < 6) currentMem = 6;
+      if (currentMem > 12) currentMem = 12;
+      if(gpuMemFillEl) gpuMemFillEl.style.width = `${(currentMem / 16) * 100}%`;
+      if(gpuMemTextEl) gpuMemTextEl.textContent = `${currentMem.toFixed(1)} / 16.0 GB`;
+
     };
 
     const statsInterval = setInterval(updateStats, 2100);
 
     return () => {
-      // Cleanup on component unmount
       if (themeToggle) themeToggle.removeEventListener("change", toggleTheme);
-       clearInterval(statsInterval);
+      clearInterval(statsInterval);
     };
 
   }, []);

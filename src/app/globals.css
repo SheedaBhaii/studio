@@ -65,7 +65,7 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(11,18,32,0.6);backd
 .kpi{font-weight:700}
 .hero-visual{position:relative;min-height:280px}
 .monitor{position:relative;background:linear-gradient(180deg,#0d172e,#0a1222);border:1px solid var(--border);border-radius:20px;padding:10px;box-shadow:0 25px 60px rgba(0,0,0,.45)}
-.monitor-screen{height:260px;background:radial-gradient(1200px 320px at 20% 0, rgba(22,180,211,.25), transparent 60%), linear-gradient(180deg,#0b1426,#0a0f1c);border-radius:14px;overflow:hidden;position:relative}
+.monitor-screen{height:300px;background:radial-gradient(1200px 320px at 20% 0, rgba(22,180,211,.25), transparent 60%), linear-gradient(180deg,#0b1426,#0a0f1c);border-radius:14px;overflow:hidden;position:relative}
 .screen-ui{position:absolute;inset:0;padding:12px;display:grid;grid-template-rows:auto 1fr}
 .status-bar{display:flex;gap:8px;align-items:center}
 .status-dot{width:8px;height:8px;border-radius:999px;background:var(--success)}
@@ -106,7 +106,7 @@ section { scroll-margin-top: 80px; }
 /* Soft shadows on cards and buttons already defined */
 /* Simple chart bar */
 .bar{height:10px;background:#1e293b;border-radius:999px;overflow:hidden}
-.bar>span{display:block;height:100%;background:linear-gradient(90deg,#34d399,#22c55e);width:40%}
+.bar>span{display:block;height:100%;background:linear-gradient(90deg,#34d399,#22c55e);width:40%; transition: width 0.5s ease-in-out;}
 /* Tables */
 table{width:100%;border-collapse:separate;border-spacing:0 8px}
 th,td{padding:10px;border-bottom:1px solid var(--border)}
@@ -133,15 +133,3 @@ tr{background:var(--card)}
   50% { width: 100%; }
   100% { width: 0%; }
 }
-@keyframes bar-anim {
-  0% { width: 30%; }
-  50% { width: 90%; }
-  100% { width: 30%; }
-}
-#renderFill { animation: progress-anim 5s ease-in-out infinite; }
-#gpuFill { animation: bar-anim 6s ease-in-out infinite; animation-delay: .2s; }
-#netFill { animation: bar-anim 7s ease-in-out infinite; animation-delay: .5s; }
-
-#dashGpu>span { animation: bar-anim 6s ease-in-out infinite; animation-delay: .2s; }
-#dashRtt>span { animation: bar-anim 7s ease-in-out infinite; animation-delay: .5s; }
-#dashVram>span { animation: bar-anim 5s ease-in-out infinite; animation-delay: .3s; }

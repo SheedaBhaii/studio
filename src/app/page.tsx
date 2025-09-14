@@ -88,10 +88,29 @@ export default function Home() {
                         <span>V-Ray Render — Scene: atrium_v3.max</span>
                         <span id="gpu-stats" className="chip">GPU 72% • 62°C</span>
                       </div>
-                      <div style={{padding:'12px',display:'grid',gap:'12px'}}>
+                      <div style={{padding:'12px',display:'grid',gap:'12px', fontSize: '11px', color: 'var(--muted)'}}>
                         <div className="render-bar" aria-hidden="true"><div id="renderFill" className="render-fill"></div></div>
-                        <div className="bar"><span id="gpuFill"></span></div>
-                        <div className="bar"><span id="netFill" style={{background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
+                        <div>
+                          <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
+                            <span>GPU Utilization</span>
+                            <span id="gpu-util-text">0%</span>
+                          </div>
+                          <div className="bar"><span id="gpuUtilFill"></span></div>
+                        </div>
+                        <div>
+                           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
+                            <span>GPU Clock</span>
+                            <span id="gpu-clock-text">500 MHz</span>
+                          </div>
+                          <div className="bar"><span id="gpuClockFill" style={{background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
+                        </div>
+                         <div>
+                           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
+                            <span>GPU Memory</span>
+                            <span id="gpu-mem-text">0.0 / 16.0 GB</span>
+                          </div>
+                          <div className="bar"><span id="gpuMemFill" style={{background:'linear-gradient(90deg,#a78bfa,#8b5cf6)'}}></span></div>
+                        </div>
                         <div className="note">Subtle motion preview. Actual sessions stream at native framerate.</div>
                       </div>
                     </div>
