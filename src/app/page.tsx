@@ -25,7 +25,7 @@ function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContactForm, null);
 
   return (
-    <div className="card card-pad" style={{ marginTop: '16px' }}>
+    <div className="card card-pad h-full">
       <h3>Contact us</h3>
       {state?.message && !state.errors && (
          <div className={`mt-2 text-sm ${state.errors ? 'text-red-500' : 'text-green-500'}`}>{state.message}</div>
@@ -263,7 +263,7 @@ export default function Home() {
       <section id="reviews" className="route">
         <h2 className="section-title">Reviews</h2>
         <div className="grid-3">
-          {testimonials.map((testimonial, reviewIndex) => (
+          {testimonials.slice(0, 3).map((testimonial, reviewIndex) => (
             <div key={reviewIndex} className="card card-pad">
               <div className="flex items-start gap-4">
                 {testimonial.avatar && (
@@ -319,22 +319,24 @@ export default function Home() {
       <section id="support" className="route">
         <h2 className="section-title">Support</h2>
         <div className="grid-2">
-          <div className="card card-pad">
-            <h3>Knowledge base</h3>
-            <ul>
-              <li>Getting started (Architects, Gamers)</li>
-              <li>Streaming setup: Parsec, Moonlight, WebRTC</li>
-              <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
-              <li>Licensing & BYOL</li>
-            </ul>
-          </div>
-          <div className="card card-pad">
-            <h3>System status</h3>
-            <p className="muted">All systems operational</p>
-            <div className="chip">Uptime 99.95%</div>
-          </div>
+           <div className="flex flex-col gap-4">
+              <div className="card card-pad">
+                <h3>Knowledge base</h3>
+                <ul>
+                  <li>Getting started (Architects, Gamers)</li>
+                  <li>Streaming setup: Parsec, Moonlight, WebRTC</li>
+                  <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
+                  <li>Licensing & BYOL</li>
+                </ul>
+              </div>
+              <div className="card card-pad">
+                <h3>System status</h3>
+                <p className="muted">All systems operational</p>
+                <div className="chip">Uptime 99.95%</div>
+              </div>
+            </div>
+          <ContactForm />
         </div>
-        <ContactForm />
       </section>
 
       <section id="legal" className="route">
