@@ -325,6 +325,10 @@ export default function Home() {
               <li>Troubleshooting Common Issues</li>
               <li>Understanding Hardware Specs</li>
               <li>Account & Profile Management</li>
+              <li>Managing Your Subscription</li>
+              <li>Security and Data Privacy</li>
+              <li>Optimizing Your Connection</li>
+              <li>Requesting New Software</li>
             </ul>
           </div>
           <ContactForm />
@@ -362,3 +366,5 @@ export default function Home() {
     </main>
   );
 }
+
+    
