@@ -21,8 +21,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Facebook, Chrome } from 'lucide-react';
-
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
@@ -239,7 +237,7 @@ export default function ClientLayout({
               </p>
           )}
 
-          <Button onClick={() => handleEmailAuth(mode)} className="w-full">
+          <Button onClick={() => handleEmailAuth(mode)} className="w-full btn-primary">
               {mode === 'signin' ? 'Sign In' : 'Create Account'}
           </Button>
            {mode === 'signup' && (
@@ -247,6 +245,14 @@ export default function ClientLayout({
                   Already have an account?{' '}
                    <span className="text-primary hover:underline cursor-pointer" onClick={() => setAuthTab('signin')}>
                       Sign in
+                  </span>
+              </p>
+          )}
+           {mode === 'signin' && (
+               <p className="text-center text-sm text-muted-foreground">
+                  Don't have an account?{' '}
+                   <span className="text-primary hover:underline cursor-pointer" onClick={() => setAuthTab('signup')}>
+                      Sign up
                   </span>
               </p>
           )}
@@ -435,3 +441,5 @@ export default function ClientLayout({
     </>
   );
 }
+
+    
