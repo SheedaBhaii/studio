@@ -237,7 +237,7 @@ export default function ClientLayout({
         const gpu = Math.floor(Math.random() * (95 - 60 + 1) + 60);
         tempCounter++;
         if (tempCounter > 4) { // Update temp every 4 intervals (6 seconds)
-            currentTemp = Math.floor(Math.random() * (75 - 58 + 1) + 58);
+            currentTemp = Math.floor(Math.random() * (70 - 58 + 1) + 58);
             tempCounter = 0;
         }
         gpuStatsEl.textContent = `GPU ${gpu}% • ${currentTemp}°C`;
