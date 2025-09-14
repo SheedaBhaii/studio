@@ -261,9 +261,9 @@ export default function Home() {
       </section>
       
       <section id="reviews" className="route">
-        <h2 className="section-title">Reviews</h2>
-        <div className="grid-3">
-          {testimonials.slice(0, 3).map((testimonial, reviewIndex) => (
+        <h2 className="section-title">What Our Customers Are Saying</h2>
+         <div className="grid-3">
+          {testimonials.map((testimonial, reviewIndex) => (
             <div key={reviewIndex} className="card card-pad">
               <div className="flex items-start gap-4">
                 {testimonial.avatar && (
@@ -291,27 +291,31 @@ export default function Home() {
       </section>
 
       <section id="faq" className="route">
-        <h2 className="section-title">FAQ</h2>
+        <h2 className="section-title">Frequently Asked Questions</h2>
         <div className="grid-2">
           <div className="card card-pad">
-            <strong>Software licensing</strong>
-            <p className="muted">We provide optional installers; bring your own license where required. We don’t resell vendor licenses.</p>
+            <strong>What software can I use?</strong>
+            <p className="muted">You can bring your own licenses for software like AutoCAD, Revit, and Adobe Creative Suite. We also offer pre-installed options for popular rendering engines and gaming clients like Steam. Just select what you need when booking.</p>
           </div>
           <div className="card card-pad">
-            <strong>Refunds</strong>
-            <p className="muted">Unused time is refundable; interrupted sessions are credited. See Refund Policy.</p>
+            <strong>How good is the streaming performance?</strong>
+            <p className="muted">We use Parsec and Moonlight to achieve ultra-low latency, often under 20ms, which is excellent for competitive gaming and smooth design work. Your experience will depend on your internet connection, but our servers are optimized for performance.</p>
           </div>
           <div className="card card-pad">
-            <strong>Student verification</strong>
-            <p className="muted">Verify with a university email to unlock student pricing.</p>
+            <strong>How do I get my files on and off the machine?</strong>
+            <p className="muted">You can sync your files using Google Drive, OneDrive, or connect directly via SFTP. For smaller files, drag-and-drop upload is also available. When your session ends, you can download your rendered outputs or saved games easily.</p>
           </div>
           <div className="card card-pad">
-            <strong>Latency & streaming</strong>
-            <p className="muted">Choose Parsec/Moonlight for best performance; WebRTC is available for browser-only access.</p>
+            <strong>How does student pricing work?</strong>
+            <p className="muted">Simply sign up and verify your account with a valid university email address (e.g., from LUMS, NUST, etc.). Once verified, the student discount is automatically applied to your hourly rates.</p>
           </div>
           <div className="card card-pad">
-            <strong>File security</strong>
-            <p className="muted">S3 encrypted at rest, TLS in transit. Optional ephemeral sessions wipe storage after end.</p>
+            <strong>Is my data secure?</strong>
+            <p className="muted">Yes. Your personal storage is encrypted and isolated. We also offer optional 'ephemeral sessions' where the entire storage is wiped clean after you log out, ensuring no data is left behind.</p>
+          </div>
+          <div className="card card-pad">
+            <strong>Can I bring my own hardware?</strong>
+            <p className="muted">While you rent our powerful remote PCs, you can absolutely integrate your own peripherals like specialized mice, drawing tablets, or controllers. Our streaming clients have excellent device compatibility for a seamless workflow.</p>
           </div>
         </div>
       </section>
@@ -319,7 +323,7 @@ export default function Home() {
       <section id="support" className="route">
         <h2 className="section-title">Support</h2>
         <div className="grid-2">
-           <div>
+           <div className="space-y-4">
               <div className="card card-pad">
                 <h3>Knowledge base</h3>
                 <ul>
@@ -329,7 +333,7 @@ export default function Home() {
                   <li>Licensing & BYOL</li>
                 </ul>
               </div>
-              <div className="card card-pad" style={{marginTop:'16px'}}>
+              <div className="card card-pad">
                 <h3>System status</h3>
                 <p className="muted">All systems operational</p>
                 <div className="chip">Uptime 99.95%</div>
