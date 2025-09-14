@@ -237,6 +237,8 @@ export default function ClientLayout({
     const gpuUtilTextEl = document.getElementById('gpu-util-text');
     const gpuClockTextEl = document.getElementById('gpu-clock-text');
     const gpuMemTextEl = document.getElementById('gpu-mem-text');
+    const latencyFillEl = document.getElementById('latencyFill') as HTMLElement;
+    const latencyTextEl = document.getElementById('latency-text');
 
     let tempCounter = 0;
     let currentTemp = 62;
@@ -262,6 +264,9 @@ export default function ClientLayout({
       if (latencyStatsEl) {
         latencyStatsEl.textContent = `Remote session connected — ${latency} ms`;
       }
+      if (latencyFillEl) latencyFillEl.style.width = `${(latency / 20) * 100}%`;
+      if (latencyTextEl) latencyTextEl.textContent = `${latency} ms`;
+
 
       // GPU Clock
       const clock = Math.floor(Math.random() * (2125 - 1800 + 1) + 1800);

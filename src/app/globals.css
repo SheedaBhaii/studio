@@ -71,7 +71,7 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(11,18,32,0.6);backd
 .status-dot{width:8px;height:8px;border-radius:999px;background:var(--success)}
 .window{margin-top:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;height:100%;overflow:hidden}
 .render-bar{height:10px;background:rgba(22,180,211,.15);border-radius:999px;overflow:hidden}
-.render-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#7ee3f6); animation: progress-anim 8s ease-in-out infinite;}
+.render-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#7ee3f6);}
 .how{padding:40px 0}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -128,8 +128,10 @@ tr{background:var(--card)}
 /* Focus */
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:8px}
 
-@keyframes progress-anim {
-  0% { width: 0%; }
-  50% { width: 100%; }
-  100% { width: 0%; }
+@keyframes progress-anim-alt {
+  0% { width: 40%; }
+  25% { width: 100%; }
+  50% { width: 60%; }
+  75% { width: 90%; }
+  100% { width: 40%; }
 }

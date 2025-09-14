@@ -85,11 +85,18 @@ export default function Home() {
                     </div>
                     <div className="window" role="img" aria-label="Animated render progress">
                       <div style={{padding:'12px',borderBottom:'1px solid var(--border)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                        <span>V-Ray Render — Scene: atrium_v3.max</span>
+                        <span>Connection Status</span>
                         <span id="gpu-stats" className="chip">GPU 72% • 62°C</span>
                       </div>
                       <div style={{padding:'12px',display:'grid',gap:'12px', fontSize: '11px', color: 'var(--muted)'}}>
-                        <div className="render-bar" aria-hidden="true"><div id="renderFill" className="render-fill"></div></div>
+                        
+                        <div>
+                           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
+                            <span>Latency</span>
+                            <span id="latency-text">0 ms</span>
+                          </div>
+                          <div className="bar"><span id="latencyFill" style={{background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
+                        </div>
                         <div>
                           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
                             <span>GPU Utilization</span>
