@@ -18,6 +18,12 @@ const RecommendPCConfigurationInputSchema = z.object({
   gameRequirements: z
     .string()
     .describe('The game requirements for the PC configuration.'),
+  photoDataUri: z
+    .string()
+    .optional()
+    .describe(
+      "An optional photo of the user's current setup or a specific piece of software, as a data URI."
+    ),
 });
 export type RecommendPCConfigurationInput = z.infer<
   typeof RecommendPCConfigurationInputSchema
@@ -51,12 +57,17 @@ const prompt = ai.definePrompt({
   name: 'recommendPCConfigurationPrompt',
   input: {schema: RecommendPCConfigurationInputSchema},
   output: {schema: RecommendPCConfigurationOutputSchema},
-  prompt: `You are an expert PC building assistant. Based on the software and game requirements provided, you will recommend a PC configuration.
+  prompt: `You are an expert PC building assistant. Based on the software, game requirements, and optional photo provided, you will recommend a PC configuration.
 
 Software Requirements: {{{softwareRequirements}}}
 Game Requirements: {{{gameRequirements}}}
+{{#if photoDataUri}}
+User's Photo: {{media url=photoDataUri}}
+{{/if}}
 
-Consider the software and game requirements and provide a configuration including:
+Analyze the text and the image (if provided) to understand the user's needs. The image might show their current setup, a specific game, or a piece of design software. Use all available information to provide a tailored recommendation.
+
+Provide a configuration including:
 - recommendedGPU
 - recommendedCPU
 - recommendedRAM

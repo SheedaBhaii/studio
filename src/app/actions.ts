@@ -17,6 +17,7 @@ const pcFormSchema = z.object({
   gameRequirements: z.string().min(10, {
     message: 'Please describe the games you play in a bit more detail.',
   }),
+  photoDataUri: z.string().optional(),
 });
 
 export async function getPCRecommendation(
@@ -30,6 +31,7 @@ export async function getPCRecommendation(
   const validatedFields = pcFormSchema.safeParse({
     softwareRequirements: formData.get('softwareRequirements'),
     gameRequirements: formData.get('gameRequirements'),
+    photoDataUri: formData.get('photoDataUri'),
   });
 
   if (!validatedFields.success) {
@@ -77,6 +79,6 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   
   await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
   
-  revalidatePath('/');
+  revalidatePath('/support');
   return { message: 'Thank you for your message! We will get back to you shortly.' };
 }
