@@ -216,7 +216,7 @@ export default function Home() {
         <h2 className="section-title">Machine Spotlight</h2>
         <div className="grid-2">
           <div className="card card-pad">
-            <h3>Pro Studio RX6800</h3>
+            <h3>Pro Studio RX 6800</h3>
             <p className="muted">Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.</p>
             <div className="machine-specs">
               <div className="spec-k">CPU</div><div>AMD Ryzen 5 5600</div>
@@ -224,7 +224,7 @@ export default function Home() {
               <div className="spec-k">RAM</div><div>16GB DDR4 3800 MHz</div>
               <div className="spec-k">Storage</div><div>5 TB Storage</div>
             </div>
-            <div style={{marginTop:'12px'}} className="note">“Rent the ‘Pro Studio RX6800’ — ideal for high-res renders, GPU-accelerated ray tracing, and 3D viewport performance. Perfect for architecture renders & high-refresh gaming.”</div>
+            <div style={{marginTop:'12px'}} className="note">“Rent the ‘Pro Studio RX 6800’ — ideal for high-res renders, GPU-accelerated ray tracing, and 3D viewport performance. Perfect for architecture renders & high-refresh gaming.”</div>
             <div className="cta-row" style={{marginTop:'12px'}}>
                <a href="#pricing" className="btn btn-primary">Reserve</a>
             </div>
@@ -326,7 +326,7 @@ export default function Home() {
         {
           "@context":"https://schema.org",
           "@type":"Product",
-          "name":"Pro Studio RX6800",
+          "name":"Pro Studio RX 6800",
           "description":"Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.",
           "brand":{"@type":"Brand","name":"ArchPlay PCs"},
           "offers":{
