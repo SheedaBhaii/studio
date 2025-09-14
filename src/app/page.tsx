@@ -189,13 +189,15 @@ export default function Home() {
       document.title = "ArchPlay PCs" + (hash !== "/" ? ` — ${hash.substring(1).replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}` : ' — High-Power PCs');
     }
     window.addEventListener("hashchange", renderRoute);
-    (window as any).go = (h: string) => { location.hash = h; }
+    const go = (h: string) => { location.hash = h; }
+    (window as any).go = go;
     
     const themeToggle = document.getElementById("themeToggle") as HTMLInputElement;
     function applyTheme(t: string){ document.documentElement.setAttribute("data-theme", t); if(themeToggle) themeToggle.checked = (t==="light"); }
     function toggleTheme(){ const curr = document.documentElement.getAttribute("data-theme"); const newTheme = curr==="dark"?"light":"dark"; applyTheme(newTheme); localStorage.setItem("theme", newTheme); }
     themeToggle?.addEventListener("change", toggleTheme);
     const savedTheme = localStorage.getItem("theme"); if (savedTheme) applyTheme(savedTheme);
+    (window as any).toggleTheme = toggleTheme;
 
     function toggleDrawer(force?: boolean) {
       const d = document.getElementById("drawer");
