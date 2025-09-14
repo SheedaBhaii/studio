@@ -174,19 +174,19 @@ export default function Home() {
           <div className="grid-3">
             <div className="card card-pad">
               <h3>Standard</h3>
-              <div className="price">1000 Pkr/hr</div>
+              <div className="price">1000 PKR/hr</div>
               <p className="muted">Priority: Standard • Queue ETA</p>
               <a href="#machines" className="btn btn-primary">Choose</a>
             </div>
             <div className="card card-pad">
               <h3>Student</h3>
-              <div className="price">500 Pkr/hr</div>
+              <div className="price">500 PKR/hr</div>
               <p className="muted">Verify university email for discount</p>
               <a href="#machines" className="btn btn-primary">Choose</a>
             </div>
             <div className="card card-pad">
               <h3>Pro</h3>
-              <div className="price">1500 Pkr/hr</div>
+              <div className="price">1500 PKR/hr</div>
               <p className="muted">Priority: High • Shorter queues</p>
               <a href="#machines" className="btn btn-primary">Choose</a>
             </div>
