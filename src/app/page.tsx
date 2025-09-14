@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useActionState, useRef } from 'react';
-import { getPCRecommendation, submitContactForm, type RecommendPCConfigurationOutput } from '@/app/actions';
+import { getPCRecommendation, submitContactForm } from '@/app/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
