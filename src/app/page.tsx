@@ -320,7 +320,7 @@ export default function Home() {
         <h2 className="section-title">Support</h2>
         <div className="grid-2">
            <div>
-              <div className="card card-pad mb-4">
+              <div className="card card-pad">
                 <h3>Knowledge base</h3>
                 <ul>
                   <li>Getting started (Architects, Gamers)</li>
@@ -329,7 +329,7 @@ export default function Home() {
                   <li>Licensing & BYOL</li>
                 </ul>
               </div>
-              <div className="card card-pad">
+              <div className="card card-pad" style={{marginTop:'16px'}}>
                 <h3>System status</h3>
                 <p className="muted">All systems operational</p>
                 <div className="chip">Uptime 99.95%</div>
