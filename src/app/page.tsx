@@ -17,7 +17,7 @@ function ContactForm() {
 
   return (
     <div className="card card-pad h-full">
-      <h3>Contact us</h3>
+      <h3>Get in Touch</h3>
       {state?.message && !state.errors && (
          <div className={`mt-2 text-sm ${state.errors ? 'text-red-500' : 'text-green-500'}`}>{state.message}</div>
       )}
@@ -35,11 +35,11 @@ function ContactForm() {
         </div>
         <div>
           <Label htmlFor="message">Message</Label>
-          <Textarea id="message" name="message" rows={4} required />
+          <Textarea id="message" name="message" rows={4} required placeholder="Have a question? Ask away!"/>
           {state?.errors?.message && <p className="text-red-500 text-sm mt-1">{state.errors.message}</p>}
         </div>
         <Button type="submit" disabled={pending} className="btn btn-primary">
-          {pending ? 'Sending...' : 'Send'}
+          {pending ? 'Sending...' : 'Send Message'}
         </Button>
       </form>
     </div>
@@ -76,26 +76,26 @@ export default function Home() {
         <div className="hero">
           <div className="hero-inner">
             <div>
-              <div className="badge">Friendly, professional, performance-first</div>
-              <h1 id="home-title" className="headline">High-Power PCs for Architects & Gamers — Rent by the Hour</h1>
-              <p className="subhead">Render, simulate, or game on a powerful machine from anywhere — no hardware upgrade required.</p>
+              <div className="badge">Your On-Demand High-Performance Workstation</div>
+              <h1 id="home-title" className="headline">On-Demand GPU Power for Creatives & Gamers</h1>
+              <p className="subhead">Access powerful, remote workstations by the hour. Render, design, and game without expensive hardware investments. Instantly stream a high-end PC to any device.</p>
               <div className="cta-row">
-                <a className="btn btn-primary" href="#machines">Book a Machine</a>
+                <a className="btn btn-primary" href="#machines">View Machines</a>
                 <a className="btn btn-accent" href="#pricing">See Pricing</a>
                 <a className="btn btn-ghost" href="#how-it-works">How It Works</a>
               </div>
               <div className="valprops">
                 <div className="card card-pad">
-                  <div className="kpi">Low-latency streaming</div>
-                  <p className="muted">Parsec / Moonlight / WebRTC in-browser. Smooth input & 180Hz-ready.</p>
+                  <div className="kpi">Ultra-Low Latency</div>
+                  <p className="muted">Experience near-native performance with Parsec and Moonlight streaming technology, perfect for fast-paced gaming and responsive design work.</p>
                 </div>
                 <div className="card card-pad">
-                  <div className="kpi">CAD & render ready</div>
-                  <p className="muted">Revit, AutoCAD, 3ds Max, Rhino, Blender, V-Ray, Lumion — preinstalled options.</p>
+                  <div className="kpi">Pro Software Ready</div>
+                  <p className="muted">Machines can be pre-configured with Revit, AutoCAD, 3ds Max, Blender, V-Ray, and more. Install your own licensed software anytime.</p>
                 </div>
                 <div className="card card-pad">
-                  <div className="kpi">Secure sign-in</div>
-                  <p className="muted">Google, Microsoft, Facebook, or Email (magic link). Account linking supported.</p>
+                  <div className="kpi">Secure & Private</div>
+                  <p className="muted">Your session data is isolated and secure. Choose ephemeral sessions to have all data wiped automatically upon logout.</p>
                 </div>
               </div>
             </div>
@@ -109,14 +109,14 @@ export default function Home() {
                     </div>
                     <div className="window" role="img" aria-label="Animated render progress">
                       <div style={{padding:'12px',borderBottom:'1px solid var(--border)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                        <span>Connection Status</span>
+                        <span>Session Performance</span>
                         <span id="gpu-stats" className="chip">GPU 72% • 62°C</span>
                       </div>
                       <div style={{padding:'12px',display:'grid',gap:'12px', fontSize: '11px', color: 'var(--muted)'}}>
                         
                         <div>
                            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
-                            <span>Latency</span>
+                            <span>Network Latency</span>
                             <span id="latency-text">0 ms</span>
                           </div>
                           <div className="bar"><span id="latencyFill" style={{background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
@@ -130,14 +130,14 @@ export default function Home() {
                         </div>
                         <div>
                            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
-                            <span>GPU Clock</span>
+                            <span>GPU Clock Speed</span>
                             <span id="gpu-clock-text">500 MHz</span>
                           </div>
                           <div className="bar"><span id="gpuClockFill" style={{background:'linear-gradient(90deg,#60a5fa,#3b82f6)'}}></span></div>
                         </div>
                          <div>
                            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '4px'}}>
-                            <span>GPU Memory</span>
+                            <span>VRAM Usage</span>
                             <span id="gpu-mem-text">0.0 / 16.0 GB</span>
                           </div>
                           <div className="bar"><span id="gpuMemFill" style={{background:'linear-gradient(90deg,#a78bfa,#8b5cf6)'}}></span></div>
@@ -146,7 +146,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div style={{textAlign:'center',color:'var(--muted)',marginTop:'8px',fontSize:'12px'}}>Remote & local high-performance PC access — for architects & gamers.</div>
+                <div style={{textAlign:'center',color:'var(--muted)',marginTop:'8px',fontSize:'12px'}}>Your high-performance PC, accessible from anywhere.</div>
               </div>
             </div>
           </div>
@@ -154,98 +154,98 @@ export default function Home() {
       </section>
 
       <section id="how-it-works" className="how route">
-        <h2 className="section-title">How it works — 3 steps</h2>
+        <h2 className="section-title">Get Started in 3 Simple Steps</h2>
         <div className="grid-3">
           <div className="card card-pad">
-            <div className="kpi">1. Choose a machine or plan</div>
-            <p className="muted">Pick hourly, daily, or subscription access with priority tiers.</p>
+            <div className="kpi">1. Choose Your Rig</div>
+            <p className="muted">Select from our range of high-performance machines. Pay by the hour or choose a plan that fits your needs.</p>
           </div>
           <div className="card card-pad">
-            <div className="kpi">2. Upload files or launch streaming</div>
-            <p className="muted">Architects: sync via Google Drive/OneDrive/WebDAV/SFTP. Gamers: Parsec/Moonlight/WebRTC.</p>
+            <div className="kpi">2. Connect & Go</div>
+            <p className="muted">Launch an ultra-low latency stream via Parsec, Moonlight, or our in-browser client. Sync your files from the cloud or upload directly.</p>
           </div>
           <div className="card card-pad">
-            <div className="kpi">3. Pay per hour and download results</div>
-            <p className="muted">Stripe or PayPal. Auto-invoices, usage meter, and file downloads.</p>
+            <div className="kpi">3. Pay As You Go</div>
+            <p className="muted">Simple, transparent hourly billing with no hidden fees. Securely pay with Stripe or PayPal and access your results instantly.</p>
           </div>
         </div>
       </section>
 
       <section className="route">
-        <h2 className="section-title">Feature highlights</h2>
+        <h2 className="section-title">Why Choose ArchPlay?</h2>
         <div className="grid-2">
           <div className="card card-pad">
-            <h3>Software support</h3>
-            <p className="muted">Revit, AutoCAD, 3ds Max, Rhino, Blender, V-Ray, Lumion, Steam — optional installs per machine.</p>
+            <h3>Pre-Configured Software</h3>
+            <p className="muted">Our machines are ready to go with optional pre-installed software like Blender, V-Ray, and major game launchers. You can also install your own licensed software.</p>
           </div>
           <div className="card card-pad">
-            <h3>Low latency streaming</h3>
-            <p className="muted">Sub-20 ms targets via Parsec/Moonlight. WebRTC in-browser streaming (experimental).</p>
+            <h3>Optimized for Performance</h3>
+            <p className="muted">We target sub-20ms latency for a smooth, responsive experience, whether you're in a competitive match or manipulating a complex 3D model.</p>
           </div>
           <div className="card card-pad">
-            <h3>Secure auth</h3>
-            <p className="muted">Google, Microsoft, Facebook, and Email magic link. Strict session cookies & state/nonce.</p>
+            <h3>Secure Authentication</h3>
+            <p className="muted">Log in effortlessly with Google, Microsoft, or a passwordless email link. Your account and data are protected with industry-standard security protocols.</p>
           </div>
           <div className="card card-pad">
-            <h3>File sync</h3>
-            <p className="muted">Drag-and-drop uploads, S3-backed storage, persistent personal space (paid add-on).</p>
+            <h3>Flexible File Management</h3>
+            <p className="muted">Sync files via Google Drive, OneDrive, or SFTP. Opt for persistent storage to keep your project files available across all your sessions.</p>
           </div>
         </div>
       </section>
 
       <section id="pricing" className="pricing route">
-        <h2 className="section-title">Pricing tiers</h2>
+        <h2 className="section-title">Simple, Transparent Pricing</h2>
         <div className="grid-3">
           <div className="card card-pad">
             <h3>Standard</h3>
             <div className="price">1000 PKR/hr</div>
-            <p className="muted">Priority: Standard • Queue ETA</p>
-            <a href="#machines" className="btn btn-primary">Choose</a>
+            <p className="muted">Perfect for everyday tasks and gaming. Standard queue priority.</p>
+            <a href="#machines" className="btn btn-primary">Book Now</a>
           </div>
           <div className="card card-pad">
             <h3>Student</h3>
             <div className="price">500 PKR/hr</div>
-            <p className="muted">Verify university email for discount</p>
-            <a href="#machines" className="btn btn-primary">Choose</a>
+            <p className="muted">A 50% discount for verified students. All the power, half the price.</p>
+            <a href="#machines" className="btn btn-primary">Get Verified</a>
           </div>
           <div className="card card-pad">
             <h3>Pro</h3>
             <div className="price">1500 PKR/hr</div>
-            <p className="muted">Priority: High • Shorter queues</p>
-            <a href="#machines" className="btn btn-primary">Choose</a>
+            <p className="muted">High-priority queue access for when deadlines are tight. Get rendering faster.</p>
+            <a href="#machines" className="btn btn-primary">Go Pro</a>
           </div>
         </div>
       </section>
 
       <section id="machines" className="route">
-        <h2 className="section-title">Machine Spotlight</h2>
+        <h2 className="section-title">Our Featured Machines</h2>
         <div className="grid-2">
           <div className="card card-pad">
             <h3>Pro Studio RX 6800</h3>
-            <p className="muted">Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.</p>
+            <p className="muted">Ideal for GPU-accelerated rendering, complex 3D modeling, and high-refresh-rate gaming.</p>
             <div className="machine-specs">
               <div className="spec-k">CPU</div><div>AMD Ryzen 5 5600</div>
               <div className="spec-k">GPU</div><div>Asus Rog Strix RX 6800 OC</div>
               <div className="spec-k">RAM</div><div>16GB DDR4 3800 MHz</div>
               <div className="spec-k">Storage</div><div>5 TB Storage</div>
             </div>
-            <div style={{marginTop:'12px'}} className="note">“Rent the ‘Pro Studio RX 6800’ — ideal for high-res renders, GPU-accelerated ray tracing, and 3D viewport performance. Perfect for architecture renders & high-refresh gaming.”</div>
+            <div style={{marginTop:'12px'}} className="note">The Pro Studio rig is a workhorse for professionals who need maximum GPU performance for ray tracing and high-resolution renders.</div>
             <div className="cta-row" style={{marginTop:'12px'}}>
-               <a href="#pricing" className="btn btn-primary">Reserve</a>
+               <a href="#pricing" className="btn btn-primary">Reserve Now</a>
             </div>
           </div>
           <div className="card card-pad">
             <h3>Gamer's Edge RTX 3070</h3>
-            <p className="muted">A balanced powerhouse for 1440p gaming and creative workloads.</p>
+            <p className="muted">A balanced powerhouse built for buttery-smooth 1440p gaming and creative workloads.</p>
             <div className="machine-specs">
               <div className="spec-k">CPU</div><div>AMD Ryzen 5 5600</div>
               <div className="spec-k">GPU</div><div>Nvidia RTX 3070</div>
               <div className="spec-k">RAM</div><div>32GB DDR4 3200 MHz</div>
               <div className="spec-k">Storage</div><div>2 TB NVMe SSD</div>
             </div>
-            <div style={{marginTop:'12px'}} className="note">"The 'Gamer's Edge' is perfect for high-framerate 1440p gaming and demanding creative tasks like video editing and 3D modeling. A true all-rounder."</div>
+            <div style={{marginTop:'12px'}} className="note">The Gamer's Edge delivers the perfect blend of performance and value for high-framerate gaming and demanding creative tasks like video editing.</div>
             <div className="cta-row" style={{marginTop:'12px'}}>
-               <a href="#pricing" className="btn btn-primary">Reserve</a>
+               <a href="#pricing" className="btn btn-primary">Reserve Now</a>
             </div>
           </div>
         </div>
@@ -317,9 +317,9 @@ export default function Home() {
           <div className="card card-pad">
             <h3>Help Center</h3>
             <ul className="space-y-2 mt-4">
-              <li>Getting started (Architects, Gamers)</li>
-              <li>Streaming setup: Parsec, Moonlight, WebRTC</li>
-              <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
+              <li>Getting Started (Architects, Gamers)</li>
+              <li>Streaming Setup: Parsec, Moonlight, WebRTC</li>
+              <li>File Sync via Drive/OneDrive/WebDAV/SFTP</li>
               <li>Licensing & BYOL (Bring Your Own License)</li>
               <li>Billing and Payments</li>
               <li>Troubleshooting Common Issues</li>
@@ -336,28 +336,28 @@ export default function Home() {
         <div className="grid-2">
           <div className="card card-pad">
             <h3>Terms of Service</h3>
-            <p className="muted">Acceptable use, session limits, and prohibited activities.</p>
+            <p className="muted">Review our acceptable use policies, session limits, and data handling practices.</p>
           </div>
           <div className="card card-pad">
             <h3>Privacy Policy</h3>
-            <p className="muted">We collect minimal data for account and billing; see full policy.</p>
+            <p className="muted">Learn how we collect and protect your data. We are committed to your privacy.</p>
           </div>
         </div>
         <div className="card card-pad" style={{marginTop:'16px'}}>
           <h3>Refund Policy</h3>
-          <p className="muted">Pro-rated refunds for unused time; credits for interruptions.</p>
+          <p className="muted">We offer pro-rated refunds for unused time and service credits for any interruptions.</p>
         </div>
       </section>
 
       <section id="about" className="route">
-        <h2 className="section-title">About</h2>
+        <h2 className="section-title">About ArchPlay</h2>
         <div className="card card-pad">
-          <p>ArchPlay PCs builds accessible performance for architects, artists, and gamers. Performance-first, privacy-conscious, and support-focused.</p>
+          <p>ArchPlay was founded on a simple idea: make high-performance computing accessible and affordable for everyone. Whether you're an architect facing a tight deadline, a digital artist creating your next masterpiece, or a gamer seeking the ultimate experience, we provide the power you need, when you need it.</p>
         </div>
       </section>
 
       <div style={{margin:'40px 0 20px', textAlign:'center'}}>
-        <a className="btn btn-accent" href="#pricing">See Pricing Plans</a>
+        <a className="btn btn-accent" href="#pricing">See Our Plans</a>
       </div>
       
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `
