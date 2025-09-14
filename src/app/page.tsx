@@ -149,192 +149,192 @@ export default function Home() {
             </div>
           </div>
         </div>
-        </section>
+      </section>
 
-        <section id="how-it-works" className="how route">
-          <h2 className="section-title">How it works — 3 steps</h2>
-          <div className="grid-3">
-            <div className="card card-pad">
-              <div className="kpi">1. Choose a machine or plan</div>
-              <p className="muted">Pick hourly, daily, or subscription access with priority tiers.</p>
-            </div>
-            <div className="card card-pad">
-              <div className="kpi">2. Upload files or launch streaming</div>
-              <p className="muted">Architects: sync via Google Drive/OneDrive/WebDAV/SFTP. Gamers: Parsec/Moonlight/WebRTC.</p>
-            </div>
-            <div className="card card-pad">
-              <div className="kpi">3. Pay per hour and download results</div>
-              <p className="muted">Stripe or PayPal. Auto-invoices, usage meter, and file downloads.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="route">
-          <h2 className="section-title">Feature highlights</h2>
-          <div className="grid-2">
-            <div className="card card-pad">
-              <h3>Software support</h3>
-              <p className="muted">Revit, AutoCAD, 3ds Max, Rhino, Blender, V-Ray, Lumion, Steam — optional installs per machine.</p>
-            </div>
-            <div className="card card-pad">
-              <h3>Low latency streaming</h3>
-              <p className="muted">Sub-20 ms targets via Parsec/Moonlight. WebRTC in-browser streaming (experimental).</p>
-            </div>
-            <div className="card card-pad">
-              <h3>Secure auth</h3>
-              <p className="muted">Google, Microsoft, Facebook, and Email magic link. Strict session cookies & state/nonce.</p>
-            </div>
-            <div className="card card-pad">
-              <h3>File sync</h3>
-              <p className="muted">Drag-and-drop uploads, S3-backed storage, persistent personal space (paid add-on).</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="pricing" className="pricing route">
-          <h2 className="section-title">Pricing tiers</h2>
-          <div className="grid-3">
-            <div className="card card-pad">
-              <h3>Standard</h3>
-              <div className="price">1000 PKR/hr</div>
-              <p className="muted">Priority: Standard • Queue ETA</p>
-              <a href="#machines" className="btn btn-primary">Choose</a>
-            </div>
-            <div className="card card-pad">
-              <h3>Student</h3>
-              <div className="price">500 PKR/hr</div>
-              <p className="muted">Verify university email for discount</p>
-              <a href="#machines" className="btn btn-primary">Choose</a>
-            </div>
-            <div className="card card-pad">
-              <h3>Pro</h3>
-              <div className="price">1500 PKR/hr</div>
-              <p className="muted">Priority: High • Shorter queues</p>
-              <a href="#machines" className="btn btn-primary">Choose</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="machines" className="route">
-          <h2 className="section-title">Machine Spotlight</h2>
-          <div className="grid-2">
-            <div className="card card-pad">
-              <h3>Pro Studio RX6800</h3>
-              <p className="muted">Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.</p>
-              <div className="machine-specs">
-                <div className="spec-k">CPU</div><div>AMD Ryzen 5 5600</div>
-                <div className="spec-k">GPU</div><div>Asus Rog Strix RX 6800 OC</div>
-                <div className="spec-k">RAM</div><div>16GB DDR4 3800 MHz</div>
-                <div className="spec-k">Storage</div><div>5 TB Storage</div>
-              </div>
-              <div style={{marginTop:'12px'}} className="note">“Rent the ‘Pro Studio RX6800’ — ideal for high-res renders, GPU-accelerated ray tracing, and 3D viewport performance. Perfect for architecture renders & high-refresh gaming.”</div>
-              <div className="cta-row" style={{marginTop:'12px'}}>
-                 <a href="#pricing" className="btn btn-primary">Reserve</a>
-              </div>
-            </div>
-            <div className="card card-pad">
-              <h3>Testimonials</h3>
-              <div className="space-y-6">
-                {testimonials.map((testimonial, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <Avatar>
-                      {testimonial.image && (
-                         <AvatarImage src={testimonial.image.imageUrl} alt={testimonial.name} data-ai-hint={testimonial.image.imageHint} />
-                      )}
-                      <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="font-semibold">{testimonial.name}</p>
-                      <p className="text-sm muted">{testimonial.role}</p>
-                      <div className="flex items-center gap-0.5 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                        ))}
-                      </div>
-                      <p className="mt-2 text-sm italic">{testimonial.quote}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="faq" className="route">
-          <h2 className="section-title">FAQ</h2>
-          <div className="grid-2">
-            <div className="card card-pad">
-              <strong>Software licensing</strong>
-              <p className="muted">We provide optional installers; bring your own license where required. We don’t resell vendor licenses.</p>
-            </div>
-            <div className="card card-pad">
-              <strong>Refunds</strong>
-              <p className="muted">Unused time is refundable; interrupted sessions are credited. See Refund Policy.</p>
-            </div>
-            <div className="card card-pad">
-              <strong>Student verification</strong>
-              <p className="muted">Verify with a university email to unlock student pricing.</p>
-            </div>
-            <div className="card card-pad">
-              <strong>Latency & streaming</strong>
-              <p className="muted">Choose Parsec/Moonlight for best performance; WebRTC is available for browser-only access.</p>
-            </div>
-            <div className="card card-pad">
-              <strong>File security</strong>
-              <p className="muted">S3 encrypted at rest, TLS in transit. Optional ephemeral sessions wipe storage after end.</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="support" className="route">
-          <h2 className="section-title">Support</h2>
-          <div className="grid-2">
-            <div className="card card-pad">
-              <h3>Knowledge base</h3>
-              <ul>
-                <li>Getting started (Architects, Gamers)</li>
-                <li>Streaming setup: Parsec, Moonlight, WebRTC</li>
-                <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
-                <li>Licensing & BYOL</li>
-              </ul>
-            </div>
-            <div className="card card-pad">
-              <h3>System status</h3>
-              <p className="muted">All systems operational</p>
-              <div className="chip">Uptime 99.95%</div>
-            </div>
-          </div>
-          <ContactForm />
-        </section>
-
-        <section id="legal" className="route">
-          <h2 className="section-title">Legal</h2>
-          <div className="grid-2">
-            <div className="card card-pad">
-              <h3>Terms of Service</h3>
-              <p className="muted">Acceptable use, session limits, and prohibited activities.</p>
-            </div>
-            <div className="card card-pad">
-              <h3>Privacy Policy</h3>
-              <p className="muted">We collect minimal data for account and billing; see full policy.</p>
-            </div>
-          </div>
-          <div className="card card-pad" style={{marginTop:'16px'}}>
-            <h3>Refund Policy</h3>
-            <p className="muted">Pro-rated refunds for unused time; credits for interruptions.</p>
-          </div>
-        </section>
-
-        <section id="about" className="route">
-          <h2 className="section-title">About</h2>
+      <section id="how-it-works" className="how route">
+        <h2 className="section-title">How it works — 3 steps</h2>
+        <div className="grid-3">
           <div className="card card-pad">
-            <p>ArchPlay PCs builds accessible performance for architects, artists, and gamers. Performance-first, privacy-conscious, and support-focused.</p>
+            <div className="kpi">1. Choose a machine or plan</div>
+            <p className="muted">Pick hourly, daily, or subscription access with priority tiers.</p>
           </div>
-        </section>
-
-        <div style={{margin:'40px 0 20px', textAlign:'center'}}>
-          <a className="btn btn-accent" href="#pricing">See Pricing Plans</a>
+          <div className="card card-pad">
+            <div className="kpi">2. Upload files or launch streaming</div>
+            <p className="muted">Architects: sync via Google Drive/OneDrive/WebDAV/SFTP. Gamers: Parsec/Moonlight/WebRTC.</p>
+          </div>
+          <div className="card card-pad">
+            <div className="kpi">3. Pay per hour and download results</div>
+            <p className="muted">Stripe or PayPal. Auto-invoices, usage meter, and file downloads.</p>
+          </div>
         </div>
+      </section>
+
+      <section className="route">
+        <h2 className="section-title">Feature highlights</h2>
+        <div className="grid-2">
+          <div className="card card-pad">
+            <h3>Software support</h3>
+            <p className="muted">Revit, AutoCAD, 3ds Max, Rhino, Blender, V-Ray, Lumion, Steam — optional installs per machine.</p>
+          </div>
+          <div className="card card-pad">
+            <h3>Low latency streaming</h3>
+            <p className="muted">Sub-20 ms targets via Parsec/Moonlight. WebRTC in-browser streaming (experimental).</p>
+          </div>
+          <div className="card card-pad">
+            <h3>Secure auth</h3>
+            <p className="muted">Google, Microsoft, Facebook, and Email magic link. Strict session cookies & state/nonce.</p>
+          </div>
+          <div className="card card-pad">
+            <h3>File sync</h3>
+            <p className="muted">Drag-and-drop uploads, S3-backed storage, persistent personal space (paid add-on).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="pricing route">
+        <h2 className="section-title">Pricing tiers</h2>
+        <div className="grid-3">
+          <div className="card card-pad">
+            <h3>Standard</h3>
+            <div className="price">1000 PKR/hr</div>
+            <p className="muted">Priority: Standard • Queue ETA</p>
+            <a href="#machines" className="btn btn-primary">Choose</a>
+          </div>
+          <div className="card card-pad">
+            <h3>Student</h3>
+            <div className="price">500 PKR/hr</div>
+            <p className="muted">Verify university email for discount</p>
+            <a href="#machines" className="btn btn-primary">Choose</a>
+          </div>
+          <div className="card card-pad">
+            <h3>Pro</h3>
+            <div className="price">1500 PKR/hr</div>
+            <p className="muted">Priority: High • Shorter queues</p>
+            <a href="#machines" className="btn btn-primary">Choose</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="machines" className="route">
+        <h2 className="section-title">Machine Spotlight</h2>
+        <div className="grid-2">
+          <div className="card card-pad">
+            <h3>Pro Studio RX6800</h3>
+            <p className="muted">Ideal for GPU accelerated renders, 3D modelling, and high-refresh gaming.</p>
+            <div className="machine-specs">
+              <div className="spec-k">CPU</div><div>AMD Ryzen 5 5600</div>
+              <div className="spec-k">GPU</div><div>Asus Rog Strix RX 6800 OC</div>
+              <div className="spec-k">RAM</div><div>16GB DDR4 3800 MHz</div>
+              <div className="spec-k">Storage</div><div>5 TB Storage</div>
+            </div>
+            <div style={{marginTop:'12px'}} className="note">“Rent the ‘Pro Studio RX6800’ — ideal for high-res renders, GPU-accelerated ray tracing, and 3D viewport performance. Perfect for architecture renders & high-refresh gaming.”</div>
+            <div className="cta-row" style={{marginTop:'12px'}}>
+               <a href="#pricing" className="btn btn-primary">Reserve</a>
+            </div>
+          </div>
+          <div className="card card-pad">
+            <h3>Testimonials</h3>
+            <div className="space-y-6">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <Avatar>
+                    {testimonial.image && (
+                       <AvatarImage src={testimonial.image.imageUrl} alt={testimonial.name} data-ai-hint={testimonial.image.imageHint} />
+                    )}
+                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <p className="font-semibold">{testimonial.name}</p>
+                    <p className="text-sm muted">{testimonial.role}</p>
+                    <div className="flex items-center gap-0.5 mt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <p className="mt-2 text-sm italic">{testimonial.quote}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="route">
+        <h2 className="section-title">FAQ</h2>
+        <div className="grid-2">
+          <div className="card card-pad">
+            <strong>Software licensing</strong>
+            <p className="muted">We provide optional installers; bring your own license where required. We don’t resell vendor licenses.</p>
+          </div>
+          <div className="card card-pad">
+            <strong>Refunds</strong>
+            <p className="muted">Unused time is refundable; interrupted sessions are credited. See Refund Policy.</p>
+          </div>
+          <div className="card card-pad">
+            <strong>Student verification</strong>
+            <p className="muted">Verify with a university email to unlock student pricing.</p>
+          </div>
+          <div className="card card-pad">
+            <strong>Latency & streaming</strong>
+            <p className="muted">Choose Parsec/Moonlight for best performance; WebRTC is available for browser-only access.</p>
+          </div>
+          <div className="card card-pad">
+            <strong>File security</strong>
+            <p className="muted">S3 encrypted at rest, TLS in transit. Optional ephemeral sessions wipe storage after end.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="support" className="route">
+        <h2 className="section-title">Support</h2>
+        <div className="grid-2">
+          <div className="card card-pad">
+            <h3>Knowledge base</h3>
+            <ul>
+              <li>Getting started (Architects, Gamers)</li>
+              <li>Streaming setup: Parsec, Moonlight, WebRTC</li>
+              <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
+              <li>Licensing & BYOL</li>
+            </ul>
+          </div>
+          <div className="card card-pad">
+            <h3>System status</h3>
+            <p className="muted">All systems operational</p>
+            <div className="chip">Uptime 99.95%</div>
+          </div>
+        </div>
+        <ContactForm />
+      </section>
+
+      <section id="legal" className="route">
+        <h2 className="section-title">Legal</h2>
+        <div className="grid-2">
+          <div className="card card-pad">
+            <h3>Terms of Service</h3>
+            <p className="muted">Acceptable use, session limits, and prohibited activities.</p>
+          </div>
+          <div className="card card-pad">
+            <h3>Privacy Policy</h3>
+            <p className="muted">We collect minimal data for account and billing; see full policy.</p>
+          </div>
+        </div>
+        <div className="card card-pad" style={{marginTop:'16px'}}>
+          <h3>Refund Policy</h3>
+          <p className="muted">Pro-rated refunds for unused time; credits for interruptions.</p>
+        </div>
+      </section>
+
+      <section id="about" className="route">
+        <h2 className="section-title">About</h2>
+        <div className="card card-pad">
+          <p>ArchPlay PCs builds accessible performance for architects, artists, and gamers. Performance-first, privacy-conscious, and support-focused.</p>
+        </div>
+      </section>
+
+      <div style={{margin:'40px 0 20px', textAlign:'center'}}>
+        <a className="btn btn-accent" href="#pricing">See Pricing Plans</a>
+      </div>
       
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `
         {
