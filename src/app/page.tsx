@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import React, { useActionState } from 'react';
@@ -7,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Star } from 'lucide-react';
 
@@ -236,14 +236,8 @@ export default function Home() {
             <h3>Testimonials</h3>
             <div className="space-y-6">
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <Avatar>
-                    {testimonial.image && (
-                       <AvatarImage src={testimonial.image.imageUrl} alt={testimonial.name} data-ai-hint={testimonial.image.imageHint} />
-                    )}
-                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
+                <div key={index}>
+                  <div>
                     <p className="font-semibold">{testimonial.name}</p>
                     <p className="text-sm muted">{testimonial.role}</p>
                     <div className="flex items-center gap-0.5 mt-1">
