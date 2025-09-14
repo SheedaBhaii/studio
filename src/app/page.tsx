@@ -50,20 +50,20 @@ function ContactForm() {
 
 const testimonials = [
   {
-    name: 'Fatima Ahmed',
-    role: 'Arch Student',
-    quote: '“As an architecture student in Lahore, project deadlines are everything. I was able to render a complex 4K architectural walkthrough in just a few hours for my final year project, a task that would have taken days on my university’s machines. The hourly pricing is a lifesaver for my budget, and the performance is just incredible.”',
+    name: 'Sarah L., PhD',
+    role: 'Architectural Visualization Artist',
+    quote: '“The RTX 4090 rig is a beast. My V-Ray render times have been cut by more than half, which is a massive win for my workflow. The low-latency connection from my studio in Islamabad is surprisingly stable. It feels like the machine is right here on my desk. Indispensable for tight deadlines.”',
     avatar: PlaceHolderImages.find(p => p.id === 'testimonial-1')
   },
   {
-    name: 'Bilal Khan',
-    role: 'Gamer',
-    quote: '“I was skeptical about cloud gaming for competitive shooters from Karachi, but the low latency blew me away. It felt just like playing on a local rig. I was hitting my shots in Apex Legends with no noticeable input lag. It’s my go-to for gaming when I’m traveling across Pakistan for work.”',
+    name: 'Omar K.',
+    role: 'Competitive Gamer',
+    quote: '“I was skeptical about cloud gaming for competitive shooters, but the low latency blew me away. It felt just like playing on a local rig. I was hitting my shots in Apex Legends with no noticeable input lag. It’s my go-to for gaming when I’m traveling across Pakistan for work.”',
      avatar: PlaceHolderImages.find(p => p.id === 'testimonial-3')
   },
   {
-    name: 'Ayesha Malik',
-    role: 'Studio Lead',
+    name: 'Fatima A.',
+    role: 'Lead Architect, Urban Planners Inc.',
     quote: '“Our studio in Islamabad was up against a tight deadline for an international client, and our local render farm was maxed out. ArchPlay’s shared render queue was a game-changer. Our team seamlessly offloaded several scenes, and the performance was rock-solid. We delivered the project ahead of schedule and impressed our client.”',
      avatar: PlaceHolderImages.find(p => p.id === 'testimonial-2')
   },
@@ -77,8 +77,8 @@ export default function Home() {
           <div className="hero-inner">
             <div>
               <div className="badge">Your On-Demand High-Performance Workstation</div>
-              <h1 id="home-title" className="headline">On-Demand GPU Power for Creatives & Gamers</h1>
-              <p className="subhead">Access powerful, remote workstations by the hour. Render, design, and game without expensive hardware investments. Instantly stream a high-end PC to any device.</p>
+              <h1 id="home-title" className="headline">Instant GPU Power for Creatives & Gamers</h1>
+              <p className="subhead">Access powerful, remote workstations by the hour. Render, design, and game without expensive hardware investments. Instantly stream a high-end PC to any device, anywhere.</p>
               <div className="cta-row">
                 <a className="btn btn-primary" href="#machines">View Machines</a>
                 <a className="btn btn-accent" href="#pricing">See Pricing</a>
@@ -154,25 +154,25 @@ export default function Home() {
       </section>
 
       <section id="how-it-works" className="how route">
-        <h2 className="section-title">Get Started in 3 Simple Steps</h2>
+        <h2 className="section-title">How It Works in 3 Simple Steps</h2>
         <div className="grid-3">
           <div className="card card-pad">
             <div className="kpi">1. Choose Your Rig</div>
-            <p className="muted">Select from our range of high-performance machines. Pay by the hour or choose a plan that fits your needs.</p>
+            <p className="muted">Select from a range of professionally configured machines. Pay by the hour or reserve a rig with a monthly plan.</p>
           </div>
           <div className="card card-pad">
-            <div className="kpi">2. Connect & Go</div>
-            <p className="muted">Launch an ultra-low latency stream via Parsec, Moonlight, or our in-browser client. Sync your files from the cloud or upload directly.</p>
+            <div className="kpi">2. Connect Instantly</div>
+            <p className="muted">Launch an ultra-low latency stream via Parsec, Moonlight, or our in-browser client. Your session starts in under a minute.</p>
           </div>
           <div className="card card-pad">
-            <div className="kpi">3. Pay As You Go</div>
-            <p className="muted">Simple, transparent hourly billing with no hidden fees. Securely pay with Stripe or PayPal and access your results instantly.</p>
+            <div className="kpi">3. Create & Play</div>
+            <p className="muted">Sync files, install your licensed software, and get to work. Your powerful remote PC is ready for anything.</p>
           </div>
         </div>
       </section>
 
       <section className="route">
-        <h2 className="section-title">Why Choose ArchPlay?</h2>
+        <h2 className="section-title">Why Professionals Choose ArchPlay</h2>
         <div className="grid-2">
           <div className="card card-pad">
             <h3>Pre-Configured Software</h3>
@@ -199,19 +199,19 @@ export default function Home() {
           <div className="card card-pad">
             <h3>Standard</h3>
             <div className="price">1000 PKR/hr</div>
-            <p className="muted">Perfect for everyday tasks and gaming. Standard queue priority.</p>
+            <p className="muted">Great for everyday design tasks, 1080p gaming, and general use. Standard queue priority.</p>
             <a href="#machines" className="btn btn-primary">Book Now</a>
           </div>
           <div className="card card-pad">
             <h3>Student</h3>
             <div className="price">500 PKR/hr</div>
-            <p className="muted">A 50% discount for verified students. All the power, half the price.</p>
+            <p className="muted">A 50% discount for verified students. All the power you need, at half the price.</p>
             <a href="#machines" className="btn btn-primary">Get Verified</a>
           </div>
           <div className="card card-pad">
             <h3>Pro</h3>
             <div className="price">1500 PKR/hr</div>
-            <p className="muted">High-priority queue access for when deadlines are tight. Get rendering faster.</p>
+            <p className="muted">For demanding 4K rendering and ultra-high settings gaming. High-priority queue access.</p>
             <a href="#machines" className="btn btn-primary">Go Pro</a>
           </div>
         </div>
@@ -331,31 +331,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="legal" className="route">
-        <h2 className="section-title">Legal</h2>
-        <div className="grid-2">
-          <div className="card card-pad">
-            <h3>Terms of Service</h3>
-            <p className="muted">Review our acceptable use policies, session limits, and data handling practices.</p>
-          </div>
-          <div className="card card-pad">
-            <h3>Privacy Policy</h3>
-            <p className="muted">Learn how we collect and protect your data. We are committed to your privacy.</p>
-          </div>
-        </div>
-        <div className="card card-pad" style={{marginTop:'16px'}}>
-          <h3>Refund Policy</h3>
-          <p className="muted">We offer pro-rated refunds for unused time and service credits for any interruptions.</p>
-        </div>
-      </section>
-
       <section id="about" className="route">
         <h2 className="section-title">About ArchPlay</h2>
         <div className="card card-pad">
           <p>ArchPlay was founded on a simple idea: make high-performance computing accessible and affordable for everyone. Whether you're an architect facing a tight deadline, a digital artist creating your next masterpiece, or a gamer seeking the ultimate experience, we provide the power you need, when you need it.</p>
         </div>
       </section>
-
+      
       <div style={{margin:'40px 0 20px', textAlign:'center'}}>
         <a className="btn btn-accent" href="#pricing">See Our Plans</a>
       </div>

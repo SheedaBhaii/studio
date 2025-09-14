@@ -123,7 +123,6 @@ export default function ClientLayout({
             <a href="#pricing">Pricing</a>
             <a href="#how-it-works">How it works</a>
             <a href="#support">Support</a>
-            <a href="#legal">Legal</a>
             <a href="#about">About</a>
           </nav>
           <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
@@ -141,7 +140,6 @@ export default function ClientLayout({
           <a href="#pricing" onClick={() => (window as any).toggleDrawer(false)}>Pricing</a>
           <a href="#how-it-works" onClick={() => (window as any).toggleDrawer(false)}>How it works</a>
           <a href="#support" onClick={() => (window as any).toggleDrawer(false)}>Support</a>
-          <a href="#legal" onClick={() => (window as any).toggleDrawer(false)}>Legal</a>
           <a href="#about" onClick={() => (window as any).toggleDrawer(false)}>About</a>
         </div>
       </header>
@@ -154,7 +152,6 @@ export default function ClientLayout({
           <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
             <a href="#docs">Docs</a>
             <a href="#support">Support</a>
-            <a href="#legal">Legal</a>
             <a href="#" onClick={(e) => { e.preventDefault(); (window as any).toggleTheme();}}>Toggle theme</a>
           </div>
         </div>
