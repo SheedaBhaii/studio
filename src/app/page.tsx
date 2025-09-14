@@ -293,35 +293,35 @@ export default function Home() {
         <h2 className="section-title">Frequently Asked Questions</h2>
         <div className="grid-2">
           <div className="card card-pad">
-            <strong>What software can I use?</strong>
-            <p className="muted">You can bring your own licenses for software like AutoCAD, Revit, and Adobe Creative Suite. We also offer pre-installed options for popular rendering engines and gaming clients like Steam. Just select what you need when booking.</p>
+            <strong>What software can I use on the machines?</strong>
+            <p className="muted">Our machines come with optional pre-installed software like Blender, V-Ray, and major game launchers. You can also install your own licensed software (like AutoCAD, Revit, or Adobe CC) just as you would on a local PC for the duration of your session.</p>
           </div>
           <div className="card card-pad">
-            <strong>How good is the streaming performance?</strong>
-            <p className="muted">We use Parsec and Moonlight to achieve ultra-low latency, often under 20ms, which is excellent for competitive gaming and smooth design work. Your experience will depend on your internet connection, but our servers are optimized for performance.</p>
+            <strong>How good is the streaming for competitive gaming?</strong>
+            <p className="muted">We are optimized for low-latency gaming. Using Parsec, our users in major Pakistani cities typically experience latency between 8-25ms, which is excellent for competitive shooters and fast-paced games. Your personal experience will depend on your own internet connection's quality.</p>
           </div>
            <div className="card card-pad">
-            <strong>How do I get my files on and off the machine?</strong>
-            <p className="muted">You can sync your files using Google Drive, OneDrive, or connect directly via SFTP. For smaller files, drag-and-drop upload is also available. When your session ends, you can download your rendered outputs or saved games easily.</p>
+            <strong>How do I manage my project files?</strong>
+            <p className="muted">You can sync your files seamlessly using Google Drive, OneDrive, or connect directly via SFTP for large transfers. We also offer a persistent storage add-on, giving you a personal drive on our network that keeps your files between sessions.</p>
+          </div>
+          <div className="card card-pad">
+            <strong>Is my data secure and private?</strong>
+            <p className="muted">Absolutely. Each user session is isolated in a secure environment. For maximum privacy, you can choose an 'ephemeral session,' which securely wipes all your data from the machine the moment you log out, leaving no trace behind.</p>
           </div>
           <div className="card card-pad">
             <strong>How does student pricing work?</strong>
-            <p className="muted">Simply sign up and verify your account with a valid university email address (e.g., from LUMS, NUST, etc.). Once verified, the student discount is automatically applied to your hourly rates.</p>
-          </div>
-          <div className="card card-pad">
-            <strong>Is my data secure?</strong>
-            <p className="muted">Yes. Your personal storage is encrypted and isolated. We also offer optional 'ephemeral sessions' where the entire storage is wiped clean after you log out, ensuring no data is left behind.</p>
+            <p className="muted">If you have a valid email from a recognized Pakistani educational institution (e.g., .edu.pk), you can verify it in your account settings. Once verified, the student discount is automatically applied to all your future sessions.</p>
           </div>
           <div className="card card-pad">
             <strong>Can I request specific hardware configurations?</strong>
-            <p className="muted">Currently, we offer a curated set of high-performance machines. While direct hardware customization isn't available, our Pro tier gives you priority access to the most powerful configurations. We're always evaluating new hardware to add to our lineup.</p>
+            <p className="muted">While we don't offer fully custom builds, our 'Pro' tier gives you priority access to our most powerful machines. We are constantly updating our hardware lineup based on user feedback and new tech releases to meet the demands of modern applications.</p>
           </div>
         </div>
       </section>
 
       <section id="support" className="route">
         <h2 className="section-title">Support</h2>
-        <div className="space-y-4">
+        <div className="grid-2">
           <div className="card card-pad">
             <h3>Knowledge base</h3>
             <ul>
@@ -330,9 +330,6 @@ export default function Home() {
               <li>File sync via Drive/OneDrive/WebDAV/SFTP</li>
               <li>Licensing & BYOL</li>
             </ul>
-            <h3 className="mt-4">System status</h3>
-            <p className="muted">All systems operational</p>
-            <div className="chip">Uptime 99.95%</div>
           </div>
           <ContactForm />
         </div>
