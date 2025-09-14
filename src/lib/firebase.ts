@@ -1,17 +1,2 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-
-const firebaseConfig = {
-  "projectId": "studio-9915448084-db4ad",
-  "appId": "1:533046792478:web:48396561584c76c4d5390f",
-  "storageBucket": "studio-9915448084-db4ad.firebasestorage.app",
-  "apiKey": "AIzaSyAAaYKgt3KZWoobCVLjPLQi8w6SvFqzsX0",
-  "authDomain": "studio-9915448084-db4ad.firebaseapp.com",
-  "measurementId": "",
-  "messagingSenderId": "533046792478"
-};
-
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-export { app, auth };
+// This file is intentionally left blank. 
+// Firebase is initialized via <Script> tags in layout.tsx to ensure it's available globally.
