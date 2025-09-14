@@ -54,19 +54,19 @@ const testimonials = [
   {
     name: 'A. Patel',
     role: 'Arch Student',
-    quote: '“Rendered a 4K walkthrough in hours, not days.”',
+    quote: '“As a student, project deadlines are everything. I was able to render a complex 4K architectural walkthrough in just a few hours, a task that would have taken days on my university’s machines. The hourly pricing is a lifesaver for my budget.”',
     avatar: PlaceHolderImages.find(p => p.id === 'testimonial-1')
   },
   {
     name: 'L. Chen',
     role: 'Gamer',
-    quote: '“Low latency was good enough for competitive shooters.”',
+    quote: '“I was skeptical about cloud gaming for competitive shooters, but the low latency blew me away. It felt just like playing on a local rig. I was hitting my shots in Apex Legends with no noticeable input lag. It’s my go-to for gaming when I’m traveling.”',
      avatar: PlaceHolderImages.find(p => p.id === 'testimonial-3')
   },
   {
     name: 'C. Romero',
     role: 'Studio Lead',
-    quote: '“Our team shared a render queue during a deadline.”',
+    quote: '“Our studio was up against a tight deadline, and our local render farm was maxed out. ArchPlay’s shared render queue was a game-changer. Our team seamlessly offloaded several scenes, and the performance was rock-solid. We delivered the project ahead of schedule.”',
      avatar: PlaceHolderImages.find(p => p.id === 'testimonial-2')
   },
 ];
@@ -279,7 +279,7 @@ export default function Home() {
                <div className="flex mt-2">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
                </div>
-              <p className="mt-2 text-sm italic">{testimonial.quote}</p>
+              <p className="mt-2 italic">{testimonial.quote}</p>
             </div>
           ))}
         </div>
@@ -381,4 +381,3 @@ export default function Home() {
     </main>
   );
 }
-
