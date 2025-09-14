@@ -72,7 +72,7 @@ const testimonials = [
 export default function Home() {
   return (
     <main className="container">
-      <section id="home" className="route" role="region" aria-labelledby="home-title">
+      <section id="home" className="route pt-16" role="region" aria-labelledby="home-title">
         <div className="hero">
           <div className="hero-inner">
             <div>
@@ -153,7 +153,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="how-it-works" className="how route">
+      <section id="how-it-works" className="how route pt-16">
         <h2 className="section-title">How It Works in 3 Simple Steps</h2>
         <div className="grid-3">
           <div className="card card-pad">
@@ -171,7 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="route">
+      <section className="route pt-16">
         <h2 className="section-title">Why Professionals Choose ArchPlay</h2>
         <div className="grid-2">
           <div className="card card-pad">
@@ -193,7 +193,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="pricing" className="pricing route">
+      <section id="pricing" className="pricing route pt-16">
         <h2 className="section-title">Simple, Transparent Pricing</h2>
         <div className="grid-3">
           <div className="card card-pad">
@@ -217,7 +217,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="machines" className="route">
+      <section id="machines" className="route pt-16">
         <h2 className="section-title">Our Featured Machines</h2>
         <div className="grid-2">
           <div className="card card-pad">
@@ -251,7 +251,7 @@ export default function Home() {
         </div>
       </section>
       
-      <section id="reviews" className="route">
+      <section id="reviews" className="route pt-16">
         <h2 className="section-title">What Our Customers Are Saying</h2>
          <div className="grid-3">
           {testimonials.map((testimonial, reviewIndex) => (
@@ -281,7 +281,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="route">
+      <section id="faq" className="route pt-16">
         <h2 className="section-title">Frequently Asked Questions</h2>
         <div className="grid-2">
           <div className="card card-pad">
@@ -311,7 +311,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="support" className="route">
+      <section id="support" className="route pt-16">
         <h2 className="section-title">Support</h2>
         <div className="grid-2 gap-4">
           <div className="card card-pad">
@@ -335,7 +335,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="route">
+      <section id="about" className="route pt-16">
         <h2 className="section-title">About ArchPlay</h2>
         <div className="card card-pad">
           <p>ArchPlay was founded on a simple idea: make high-performance computing accessible and affordable for everyone. Whether you're an architect facing a tight deadline, a digital artist creating your next masterpiece, or a gamer seeking the ultimate experience, we provide the power you need, when you need it.</p>
@@ -366,5 +366,3 @@ export default function Home() {
     </main>
   );
 }
-
-    
