@@ -194,7 +194,7 @@ export default function Home() {
         </section>
 
         <section id="machines" className="route">
-          <h2 className="section-title">Machine spotlight</h2>
+          <h2 className="section-title">Machine Spotlight</h2>
           <div className="grid-2">
             <div className="card card-pad">
               <h3>Pro Studio RX6800</h3>
