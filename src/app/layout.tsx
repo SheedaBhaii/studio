@@ -1,8 +1,19 @@
 
 'use client';
-import Script from 'next/script';
 import './globals.css';
 import { useEffect } from 'react';
+import { 
+  auth, 
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  OAuthProvider,
+  signInWithPopup,
+  sendSignInLinkToEmail,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from '@/lib/firebase';
 
 export default function RootLayout({
   children,
@@ -11,20 +22,6 @@ export default function RootLayout({
 }) {
   useEffect(() => {
     // This effect runs once on component mount.
-
-    // --- AUTH LOGIC ---
-    const auth = (window as any).auth;
-    const {
-      GoogleAuthProvider,
-      FacebookAuthProvider,
-      OAuthProvider,
-      signInWithPopup,
-      sendSignInLinkToEmail,
-      signInWithEmailAndPassword,
-      createUserWithEmailAndPassword,
-      isSignInWithEmailLink,
-      signInWithEmailLink,
-    } = (window as any).firebase.auth;
 
     const modal = document.getElementById("authModal");
     const authAlert = document.getElementById("authAlert");
@@ -79,7 +76,7 @@ export default function RootLayout({
                 showAuthError('Sign-in popup was closed. Please try again.');
                 break;
             case 'auth/unauthorized-domain':
-                 showAuthError('This domain is not authorized for authentication. Please contact support.');
+                 showAuthError('This domain is not authorized for authentication. Please go to your Firebase Console and add it to the list of authorized domains.');
                  break;
             default:
                 showAuthError(`An unexpected error occurred: ${error.message}`);
@@ -116,7 +113,7 @@ export default function RootLayout({
       const emailEl = document.getElementById(mode === 'signup' ? 'emailSignUp' : 'emailSignIn') as HTMLInputElement;
       const email = emailEl?.value;
 
-      if (!email || !/^[^@]+@[^@]+\\.[^@]+$/.test(email)) {
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return showAuthError("Enter a valid email to receive your magic link.");
       }
 
@@ -145,7 +142,7 @@ export default function RootLayout({
       if (!pass || pass.length < 6) {
         return showAuthError("Password must be at least 6 characters.");
       }
-       if (!email || !/^[^@]+@[^@]+\\.[^@]+$/.test(email)) {
+       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return showAuthError("Please enter a valid email address.");
       }
 
@@ -264,7 +261,6 @@ export default function RootLayout({
       window.removeEventListener("hashchange", renderRoute);
       if (themeToggle) themeToggle.removeEventListener("change", toggleTheme);
       clearInterval(animInterval);
-      // Remove other listeners if any
     };
 
   }, []);
@@ -282,8 +278,6 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://archplay.example.com/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <Script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js" strategy="beforeInteractive" />
-        <Script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js" strategy="beforeInteractive" />
       </head>
       <body>
         <header className="site">
@@ -383,29 +377,11 @@ export default function RootLayout({
                 </section>
 
                 <div className="alert alert-info">
-                  To sign in, ensure you've enabled these providers in your Firebase Authentication console and added `localhost` to the authorized domains.
+                  To sign in, ensure you've enabled these providers in your Firebase Authentication console and added your domain to the authorized domains.
                 </div>
               </div>
             </div>
         </div>
-
-        <Script id="firebase-config" strategy="beforeInteractive">
-          {`
-            const firebaseConfig = {
-              "projectId": "studio-9915448084-db4ad",
-              "appId": "1:533046792478:web:48396561584c76c4d5390f",
-              "storageBucket": "studio-9915448084-db4ad.firebasestorage.app",
-              "apiKey": "AIzaSyAAaYKgt3KZWoobCVLjPLQi8w6SvFqzsX0",
-              "authDomain": "studio-9915448084-db4ad.firebaseapp.com",
-              "measurementId": "",
-              "messagingSenderId": "533046792478"
-            };
-            if (typeof window !== 'undefined' && !window.firebase?.apps?.length) {
-              window.firebase.initializeApp(firebaseConfig);
-              window.auth = window.firebase.auth();
-            }
-          `}
-        </Script>
       </body>
     </html>
   );
